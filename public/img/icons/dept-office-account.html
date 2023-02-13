@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHCC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+                fontFamily: {
+                    mont: "'Montserrat', sans-serif",
+                },
+              colors: {
+                darkblue: '#05041B',
+                grayish: '#d6d8f3',
+                dirtywhite: '#f1f1f1',
+                borderr: '#252440',
+                blacky: '#000000',
+                tableborderr: 'B5B5B5',
+              }
+            }
+          }
+        }
+      </script>
+</head>
+
+<body class="font-mont">
+    
+    <section class="flex">
+       <!-- leftcolumn -->
+       <div class="bg-darkblue w-80 h-screen text-white">
+        <h1 class="p-5 text-2xl font-bold text-center">Dashboard</h1>
+
+            <ul class="mt-20">
+              <li class="flex gap-5 border-b-2 pl-8 pb-4 border-borderr mx-4 pt-5 mt-2 hover:bg-sky-700 cursor-pointer">
+
+                <img class="w-7 h-7" src="icons/Tasklist.png" alt="">         
+                  <a class="text-xl font-bold" href="#">Section</a>
+              </li>
+  
+              <li class="flex gap-5 border-b-2 pb-4 ml-4 mr-4 px-2 border-borderr pt-5 pl-8 hover:bg-sky-700 cursor-pointer">
+  
+                <img class="w-7 h-7" src="icons/Tasklist.png" alt="">         
+                  <a class="text-xl font-bold" href="#">Subject</a>
+              </li>
+
+              <li class="flex gap-5 border-b-2 pb-4 ml-4 mr-4 px-2 border-borderr pt-5 pl-8 hover:bg-sky-700 cursor-pointer">
+  
+                <img class="w-7 h-7" src="icons/Student Center.png" alt="">         
+                  <a class="text-xl font-bold" href="#">Student</a>
+              </li>
+
+              <li class="flex gap-5 border-b-2 pb-4 ml-4 mr-4 px-2 border-borderr pt-5 pl-8 hover:bg-sky-700 cursor-pointer">
+  
+                <img class="w-7 h-7" src="icons/School Director.png" alt="">         
+                  <a class="text-xl font-bold" href="#">Instructor</a>
+              </li>
+                
+              <li class="flex gap-5 pb-4 ml-4 mr-4 px-2 border-borderr pt-5 pl-8 hover:bg-sky-700 cursor-pointer">
+  
+                <img class="w-7 h-7" src="icons/School Director.png" alt="">         
+                  <a class="text-xl font-bold" href="#">Instructor Subjects</a>
+              </li>
+                  
+            </ul>
+
+        </div>
+
+
+        <!-- rightcolumn -->
+        <div class="w-screen bg-dirtywhite">
+
+          <!-- header -->
+          <div class="w-full flex items-center justify-between mx-auto bg-white py-2 pl-12 pr-28 h-32">
+
+            <a href="#"><img class="w-60" src="icons/CHCC logo.png" alt=""></a>
+
+            <a href="#"><img class="w-14 h-14" src="icons/user-profile.png" alt=""></a>
+
+          </div>
+
+          <!-- content -->
+            <div class="w-11/12 ml-8 mr-8 h-5/6 bg-white m-auto my-10 rounded-xl flex">
+              
+              <div class="flex flex-col w-8/12 mx-12 py-20 gap-6">
+                <h1 class="text-blacky font-bold text-center text-3xl">Create Department Officer Account</h1>
+
+                <input class="py-5 border-4 rounded-2xl px-5 mt-5 placeholder:text-xl" type="number" placeholder="Employee Number">
+
+                <input class="py-5 border-4 rounded-2xl px-5 placeholder:text-xl" type="text" placeholder="First Name">
+
+                <input class="py-5 border-4 rounded-2xl px-5 placeholder:text-xl" type="text" placeholder="Last Name">
+
+                <input class="py-5 border-4 rounded-2xl px-5 placeholder:text-xl" type="text" placeholder="Middle Name">
+
+                <input class="py-5 border-4 rounded-2xl px-5 placeholder:text-xl" type="text" placeholder="Sex">
+ 
+                  <select class="py-5 border-4 rounded-2xl px-5 cursor-pointer text-xl font-bold" name="department" id="department">
+
+                    <option class="bg-darkblue text-white" value="BSCS">BSCS</option>
+                    <option class="bg-darkblue text-white" value="EDUCATION">EDUCATION</option>
+                    <option class="bg-darkblue text-white" value="BSCRIM">BSCRIM</option>
+                    <option class="bg-darkblue text-white" value="BSHM">BSHM</option>
+                    <option class="bg-darkblue text-white" value="BSBA">BSBA</option>
+                  </select>
+                
+                <button class="text-white bg-darkblue py-5 rounded-2xl font-semibold hover:bg-sky-700 text-xl">Submit</button>
+              </div>
+
+              <!-- content division -->
+              <div class="border h-5/6 my-auto">
+                <!-- line -->
+              </div>
+
+              <div class="flex flex-col w-full py-20 gap-6">
+                <h1 class="text-blacky font-bold mx-10 text-3xl">List of Department Officers</h1>
+
+                <div class="flex justify-center w-full">
+                  <table class="table-auto text-center mt-5 w-11/12 text-lg">
+                    <thead>
+                      <tr class="space-y-3">
+                        <th>Name</th>
+                        <th>Employee No.</th>
+                        <th>Department</th>
+                        <th class="flex justify-center pb-3">Action</th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="space-y-6 text-center font-semibold">
+                      <tr class="border-4">
+                        <td>ASD</td>
+                        <td>123</td>
+                        <td>Clinic</td>
+                        <td class="flex gap-2 justify-center align-center p-3">
+                          <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/edit-icon.png" alt="">
+
+                          <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/setting-icon.png" alt="">
+                        </td>
+                      </tr>
+                    </tbody>
+
+                    <tbody class="space-y-6 border text-center font-semibold">
+                      <tr class="border-4">
+                        <td>ASD</td>
+                        <td>123</td>
+                        <td>Clinic</td>
+                        <td class="flex gap-2 justify-center align-center p-3">
+                          <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/edit-icon.png" alt="">
+
+                          <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/setting-icon.png" alt="">
+                        </td>
+                      </tr>
+                    </tbody>
+
+                    <tbody class="space-y-6 text-center font-semibold">
+                      <tr class="border-4">
+                        <td>ASD</td>
+                        <td>123</td>
+                        <td>Clinic</td>
+                        <td class="flex gap-2 justify-center align-center p-3">
+                          <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/edit-icon.png" alt="">
+
+                          <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/setting-icon.png" alt="">
+                        </td>
+                      </tr>
+                    </tbody>
+
+                    <tbody class="space-y-6 text-center font-semibold">
+                      <tr class="border-4">
+                        <td>ASD</td>
+                        <td>123</td>
+                        <td>Clinic</td>
+                        <td class="flex gap-2 justify-center align-center p-3">
+                          <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/edit-icon.png" alt="">
+
+                          <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/setting-icon.png" alt="">
+                        </td>
+                      </tr>
+                    </tbody>
+
+                    <tbody class="space-y-6 text-center font-semibold">
+                        <tr class="border-4">
+                          <td>ASD</td>
+                          <td>123</td>
+                          <td>Clinic</td>
+                          <td class="flex gap-2 justify-center align-center p-3">
+                            <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/edit-icon.png" alt="">
+  
+                            <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/setting-icon.png" alt="">
+                          </td>
+                        </tr>
+                      </tbody>
+
+                      <tbody class="space-y-6 text-center font-semibold">
+                        <tr class="border-4">
+                          <td>ASD</td>
+                          <td>123</td>
+                          <td>Clinic</td>
+                          <td class="flex gap-2 justify-center align-center p-3">
+                            <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/edit-icon.png" alt="">
+  
+                            <img class="cursor-pointer hover:bg-sky-700" src="/clearance-frontend/icons/setting-icon.png" alt="">
+                          </td>
+                        </tr>
+                      </tbody>
+                </div>
+              </div>
+        </div>
+    </section>
+</body>
+</html>
