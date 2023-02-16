@@ -5,6 +5,12 @@
 
 
 @section('content')
+
+
+    @foreach ($samples as $sample)
+        <p>{{ $sample }}</p>
+    @endforeach
+
     <div class="w-full flex flex-col items-center">
         <div class="w-4/12 bg-white p-6 rounded-lg">
             <form action="" method="post">

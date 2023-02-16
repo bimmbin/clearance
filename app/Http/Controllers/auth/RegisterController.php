@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Shuchkin\SimpleXLSX;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         return view('auth.register');
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
@@ -33,4 +32,11 @@ class RegisterController extends Controller
 
         return redirect()->route('dashboard');
     }
+    
+    public function previewTable(Request $request) {
+        $students = SimpleXLSX::parse($request->file);
+
+        return view('admin.tablepreview')->with('students', $students);
+    }
+
 }

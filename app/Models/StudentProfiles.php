@@ -10,4 +10,16 @@ class StudentProfiles extends Model
     use HasFactory;
 
     protected $table = 'student_profiles';
+
+    protected $fillable = [
+        'studentno',
+        'firstname',
+        'lastname',
+        'middlename',
+        'sex',
+        'year',
+        'course',
+        'section',
+    ];
+    
 }
