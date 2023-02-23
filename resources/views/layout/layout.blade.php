@@ -26,7 +26,7 @@
     <section class="flex">
         <!-- leftcolumn -->
         <div class="bg-darkblue w-[213px] h-screen text-white sticky top-0">
-            <h1 class="p-5 text-2xl font-bold text-center">Dashboard</h1>
+            <h1 class="p-5 text-2xl font-bold text-center"><a href="{{ route('home') }}">Dashboard</a></h1>
 
             <ul class="mt-20">
                 <li class="flex gap-5 border-b-2 pl-3 pb-4 border-borderr mx-4 pt-5 mt-2 hover:bg-sky-700 cursor-pointer items-center">
@@ -71,7 +71,7 @@
                 <ul class="flex items-center">
                     @auth
                         <li>
-                            <a href="" class="p-3">{{ auth()->user()->name }}</a>
+                            <a href="" class="p-3">{{ auth()->user()->username }}</a>
                         </li>
                         <li>
                             <form action="{{ route('logout') }}" method="post" class="p-3 inline">

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -28,7 +29,14 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
-Route::post('/storeStudent', [StudentProfilesController::class, 'storeStudent'])->name('storeStudent');
+
+// Route::post('/previewTable', [RegisterController::class, 'previewTable'])->name('previewTable');
+
+Route::get('/reg', [RegisterController::class, 'registerStudent'])->name('registerStudent');
+
+
+Route::post('/storeStudent', [ProfilesController::class, 'storeStudent'])->name('storeStudent');
+
 
 
 Route::post('/previewTable', [RegisterController::class, 'previewTable'])->name('previewTable');

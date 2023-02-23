@@ -6,5 +6,5 @@
 
 @section('content')
 
-    Hello {{ auth()->user()->name }}
+    Hello {{ $profile->firstname }} {{ $profile->lastname }}
 @endsection

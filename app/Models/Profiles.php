@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StudentProfiles extends Model
+class Profiles extends Model
 {
     use HasFactory;
-
-    protected $table = 'student_profiles';
 
     protected $fillable = [
         'studentno',
@@ -21,5 +19,8 @@ class StudentProfiles extends Model
         'course',
         'section',
     ];
-    
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
