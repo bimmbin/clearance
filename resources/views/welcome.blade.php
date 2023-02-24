@@ -5,12 +5,9 @@
 
 
 @section('content')
-    <form action="{{ route('previewTable') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file">
-        <button type="submit">Upload</button>
-    </form>
+   <a href="{{ route('createstudent') }}">create student</a>
 
-    
+   {{-- <a href="{{ route('createstudent') }}"></a>
+   <a href="{{ route('createstudent') }}"></a> --}}
 
 @endsection

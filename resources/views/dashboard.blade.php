@@ -6,5 +6,5 @@
 
 @section('content')
 
-    Hello {{ $profile->firstname }} {{ $profile->lastname }}
+    {{-- Hello {{ $profile->firstname }} {{ $profile->lastname }} --}}
 @endsection
