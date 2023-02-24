@@ -22,7 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('role');
-            $table->integer('profiles_id')->nullable();
+            $table->string('identify');
         });
     }
 

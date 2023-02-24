@@ -10,12 +10,14 @@ class AdminController extends Controller
     public function index()
     {
         // $students = Profiles::whereRelation('user', 'role', 'student')->get();
-
   
-        // dd($students);
 
-        // $students = Profiles::where('user_id', '=', 'student')->paginate(10);
+        $students = Profiles::whereRelation('user', 'role', 'student')->paginate(10);
 
-        return view('admin.createstudent');
+        // $students = Profiles::paginate(10);
+    //   dd($students);
+        return view('admin.createstudent', [
+            'students' => $students
+        ]);
     }
 }

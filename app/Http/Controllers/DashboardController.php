@@ -9,11 +9,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // $profile = Profiles::find(auth()->user()->id);
+        $profile = Profiles::find(auth()->user()->id);
 
-        //  return view('dashboard', [
-        //     'profile' => $profile
-        // ]);
-        return view('dashboard');
+         return view('dashboard', [
+            'profile' => $profile
+        ]);
+        // return view('dashboard');
     }
 }

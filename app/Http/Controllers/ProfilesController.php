@@ -9,31 +9,47 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfilesController extends Controller
 {
-    public function storeStudent(Request $request)
+    public function storeStudent()
     {
-        $students = [];
+        $students = session('students');
+        // dd($students);
+        $users = User::whereIn('identify', array_column($students, 'identify'))->get();
 
-        foreach ($request->studentno as $i => $studentnumber) {
-            $students[] = [
-                'studentno' => $studentnumber,
-                'firstname' => $request->firstname[$i],
-                'lastname' => $request->lastname[$i],
-                'middlename' => $request->middlename[$i],
-                'sex' => $request->sex[$i],
-                'year' => $request->year[$i],
-                'course' => $request->course[$i],
-                'section' => $request->section[$i],
+
+
+        $users = User::whereIn('identify', array_column($students, 'identify'))->get();
+        $userIds = [];
+        foreach ($users as $user) {
+            $userIds[$user->identify] = $user->id;
+        }
+
+        // dd($userIds);
+
+        $studentsprofile = [];
+
+        foreach ($students as $i => $student) {
+
+            $person = $userIds[$student['identify']];
+
+            $studentsprofile[] = [
+                'user_id' => $person,
+                'studentno' => $student['studentno'],
+                'firstname' => $student['firstname'],
+                'lastname' => $student['lastname'],
+                'middlename' => $student['middlename'],
+                'sex' => $student['sex'],
+                'year' => $student['year'],
+                'course' => $student['course'],
+                'section' => $student['section'],
             ];
         }
 
-        
-        session(['students' => $students]);
+        Profiles::insert($studentsprofile);
 
-        Profiles::insert($students);
+        return view('welcome', [
+            'status' => 'Student Account created successfully'
+        ]);
 
-
-
-        return redirect()->route('registerStudent');
     }
 }
 

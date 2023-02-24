@@ -29,10 +29,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/reg', [RegisterController::class, 'registerStudent'])->name('registerStudent');
+Route::post('/reg', [RegisterController::class, 'registerStudent'])->name('registerStudent');
 
 
-Route::post('/storeStudent', [ProfilesController::class, 'storeStudent'])->name('storeStudent');
+Route::get('/storeStudent', [ProfilesController::class, 'storeStudent'])->name('storeStudent');
 Route::post('/previewTable', [RegisterController::class, 'previewTable'])->name('previewTable');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');

@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <form action="{{ route('storeStudent') }}" method="post" class="">
+    <form action="{{ route('registerStudent') }}" method="post" class="">
         @csrf
        
     <table class="" style="border-collapse: collapse">
