@@ -12,7 +12,8 @@
 </div>
 @endif
 
-   <a href="{{ route('createstudent') }}">create student</a>
+   <a href="{{ route('createstudent') }}">create student</a></br>
+   <a href="{{ route('createOfficer') }}">create officer</a>
 
    {{-- <a href="{{ route('createstudent') }}"></a>
    <a href="{{ route('createstudent') }}"></a> --}}

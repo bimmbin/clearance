@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -43,3 +44,10 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 // admin
 Route::get('/createstudent', [AdminController::class, 'index'])->name('createstudent');
+Route::get('/createofficer', [AdminController::class, 'createOfficer'])->name('createOfficer');
+Route::get('/createdepartment', [DepartmentController::class, 'index'])->name('createdepartment');
+
+Route::post('/create/department', [DepartmentController::class, 'store'])->name('store.department');
+
+Route::post('/registerOfficer', [RegisterController::class, 'registerOfficer'])->name('registerOfficer');
+Route::get('/storeOfficer', [ProfilesController::class, 'storeOfficer'])->name('storeOfficer');

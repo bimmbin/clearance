@@ -1,74 +1,214 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    @vite('resources/css/app.css')
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('docTitle')</title>
+    <link rel="icon" type="image/x-icon" href="asset/chcc vector logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <!-- Fonts -->
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mont: "'Montserrat', sans-serif",
+                    },
+                    colors: {
+                        darkblue: '#05041B',
+                        grayish: '#d6d8f3',
+                        dirtywhite: '#f1f1f1',
+                        borderr: '#252440',
+                        blacky: '#000000',
+                        tableborderr: '#B5B5B5',
+                        checkb: '#1812A4',
+                        tablebg: '#FAFAFA',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        body {
-            font-family: 'Nunito', sans-serif;
+        .burger-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .burger-menu input[type="checkbox"] {
+            display: none;
+        }
+
+        .burger-menu label {
+            display: block;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .burger-menu label span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            position: absolute;
+            top: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .burger-menu label span:nth-child(1) {
+            margin-top: 10px;
+        }
+
+        .burger-menu label span:nth-child(2) {
+            margin-left: 10px;
+        }
+
+        .burger-menu label span:nth-child(3) {
+            margin-bottom: 10px;
+
+        }
+
+
+        .burger-menu input[type="checkbox"]:checked+label span:nth-of-type(1) {
+            transform: rotateX(200deg);
+        }
+
+        .burger-menu input[type="checkbox"]:checked+label span:nth-of-type(2) {
+            transform: scale(0);
+        }
+
+        .burger-menu input[type="checkbox"]:checked+label span:nth-of-type(3) {
+            transform: rotateX(-200deg);
+        }
+
+        .burger-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            width: auto;
+            margin-top: 40px;
+            height: 430px;
+        }
+
+        .burger-menu input[type="checkbox"]:checked+label+.burger-content {
+            display: block;
+            animation: slide-down 0.3s ease;
+        }
+
+        .burger-content a {
+            text-decoration: none;
+        }
+
+        /* ::-webkit-scrollbar {
+      display: none;
+    } */
+
+        @keyframes slide-down {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
 
-<body class="bg-grey">
+<body class="font-mont overflow-y-hidden">
 
-    <section class="flex">
+    <section class="flex bg-dirtywhite max-w-[1920px]">
+
         <!-- leftcolumn -->
-        <div class="bg-darkblue w-[213px] h-screen text-white sticky top-0">
-            <h1 class="p-5 text-2xl font-bold text-center"><a href="{{ route('home') }}">Dashboard</a></h1>
+        @auth
+        <div class="flex flex-col items-center relative w-[200px] bg-darkblue h-auto max-md:hidden">
 
-            <ul class="mt-20">
-                <li class="flex gap-5 border-b-2 pl-3 pb-4 border-borderr mx-4 pt-5 mt-2 hover:bg-sky-700 cursor-pointer items-center">
-                    <img class="w-7 h-7" src="img/icons/Tasklist.png" alt="">
-                    <a class="text-[17px] font-semibold" href="#">Section</a>
+            <div class="flex-col flex items-center my-[30px]">
+
+                <h1 class="text-white font-semibold text-2xl"><a href="{{ route('home') }}">Dashboard</a> </h1>
+
+            </div>
+
+            <ul class="flex flex-col items-center my-12 text-white">
+
+
+                @if (Auth::user()->role === 'admin')
+                    <li
+                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                        <img class="w-[20px] h-[20px]" src="img/icons/Student Center.png" alt="">
+                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                            href="{{ route('createstudent') }}">Student</a>
+                    </li>
+
+                    <li
+                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                        <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
+                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                            href="{{ route('createOfficer') }}">Officer</a>
+                    </li>
+
+                    <li
+                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                        <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                            href="{{ route('createdepartment') }}">Department</a>
+                    </li>
+                @endif
+
+                
+                @if (Auth::user()->role === 'student')
+                    <li
+                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                        <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                            href="#">Clearance</a>
+                    </li>
+                @endif
+
+                {{-- <li
+                    class="w-[130px] pt-3 flex gap-3 border-b gap-5 pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                    <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
+                    <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                        href="#">Instructor Subject</a>
                 </li>
 
-                <li class="flex gap-5 border-b-2 pb-4 ml-4 mr-4 px-2 border-borderr pt-5 pl-3 hover:bg-sky-700 cursor-pointer">
-                    <img class="w-7 h-7" src="img/icons/Tasklist.png" alt="">
-                    <a class="text-[17px] font-semibold" href="#">Subject</a>
-                </li>
+                <li
+                    class="w-[130px] flex gap-3 border-b gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                <li class="flex gap-5 border-b-2 pb-4 ml-4 mr-4 px-2 border-borderr pt-5 pl-3 hover:bg-sky-700 cursor-pointer">
-                    <img class="w-7 h-7" src="img/icons/Student Center.png" alt="">
-                    <a class="text-[17px] font-semibold" href="#">Student</a>
-                </li>
-
-                <li class="flex gap-5 border-b-2 pb-4 ml-4 mr-4 px-2 border-borderr pt-5 pl-3 hover:bg-sky-700 cursor-pointer">
-
-                    <img class="w-7 h-7" src="img/icons/School Director.png" alt="">
-                    <a class="text-[17px] font-semibold" href="#">Instructor</a>
-                </li>
-
-                <li class="flex gap-5 pb-4 ml-4 mr-4 px-2 border-borderr pt-5 pl-3 hover:bg-sky-700 cursor-pointer">
-
-                    <img class="w-7 h-7" src="img/icons/School Director.png" alt="">
-                    <a class="text-[17px] font-semibold" href="#">Instructor Subjects</a>
-                </li>
+                    <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                    <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                        href="#">Section</a>
+                </li> --}}
 
             </ul>
 
         </div>
-
-        <!-- rightcolumn -->
-        <div class="w-screen bg-dirtywhite flex flex-col items-center">
+    
+        @endauth
+        <!-- right-column -->
+        <div class="w-screen h-screen overflow-y-scroll scrollbar-y-hidden">
 
             <!-- header -->
-            <div class="w-full flex items-center justify-between mx-auto bg-white py-2 pl-12 pr-28 h-20">
+            <header class="flex w-[100%] bg-white items-center justify-between py-[20px] px-[50px]">
 
-                <a href="#"><img class="w-32" src="img/icons/CHCC logo.png" alt=""></a>
+                <a href="{{ route('home') }}"><img class="w-[150px] max-2xl:w-[120px]" src="img/icons/CHCC logo.png"
+                        alt=""></a>
 
-                <ul class="flex items-center">
+                <ul class="flex items-center max-md:hidden">
                     @auth
                         <li>
                             <a href="" class="p-3">{{ auth()->user()->username }}</a>
@@ -90,19 +230,84 @@
                         </li>
                     @endguest
                 </ul>
+                {{-- <div class="flex items-center gap-5">
+          <img
+            class="w-[57px] h-[57px] max-lg:w-[40px] max-lg:h-[40px] max-2xl:w-[45px] max-2xl:h-[45px] max-sm:h-[35px] max-sm:w-[35px] max-md:hidden"
+            src="asset/user-profile.png" alt="user-profile">
+        </div> --}}
 
-                {{-- <a href="#"><img class="w-14 h-14" src="img/icons/user-profile.png" alt=""></a> --}}
+                <div class="burger-menu hidden max-md:block">
 
-            </div>
-            <div class="w-[97%] h-auto pb-20 bg-white my-8 rounded-xl flex flex-col p-10">
+
+                    <input type="checkbox" id="burger-toggle">
+                    <label for="burger-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="burger-content bg-darkblue border border-blu">
+
+                        <ul class="flex flex-col items-center my-5 gap-2 text-white">
+
+                            <img class="w-[57px] h-[57px] max-lg:w-[40px] max-lg:h-[40px] max-2xl:w-[45px] max-2xl:h-[45px] max-sm:h-[35px] max-sm:w-[35px] max-md:w-[50px] max-md:h-[50px]"
+                                src="asset/user-profile.png" alt="user-profile">
+
+                            <li
+                                class="w-[224px] flex items-center gap-3 mt-5 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14">
+
+                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/Student Center.png"
+                                    alt="">
+                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Section</a>
+                            </li>
+
+                            <li
+                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+
+                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/Student Center.png"
+                                    alt="">
+                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Subject</a>
+                            </li>
+
+                            <li
+                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+
+                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/Student Center.png"
+                                    alt="">
+                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Student</a>
+                            </li>
+
+                            <li
+                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+
+                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/School Director.png"
+                                    alt="">
+                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                    href="#">Instructor</a>
+                            </li>
+
+                            <li
+                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+
+                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/School Director.png"
+                                    alt="">
+                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Instructor
+                                    Subject</a>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+                </div>
+            </header>
+
+            <main
+                class="w-[97%] min-h-[80%] max-h-fit bg-white overflow-y-hidden mt-5 mx-auto rounded-2xl flex mb-10 max-xl:flex-col max-xl:h-auto">
+
 
                 @yield('content')
 
-            </div>
-
-        </div>
-
-
+            </main>
 
     </section>
 

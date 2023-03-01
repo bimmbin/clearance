@@ -46,10 +46,38 @@ class ProfilesController extends Controller
 
         Profiles::insert($studentsprofile);
 
+        // session()->forget('students');
+
         return view('welcome', [
             'status' => 'Student Account created successfully'
         ]);
 
+    }
+
+    public function storeOfficer(Request $request)
+    {
+        // dd($request->user()->profiles->firstname);
+        $officer = session('officer');
+
+        $user = User::firstWhere('identify', $officer['identify']);
+
+
+        // dd($user);
+        $officerprofile = [
+            'user_id' => $user->id,
+            'employeeno' => $officer['employeeno'],
+            'firstname' => $officer['firstname'],
+            'lastname' => $officer['lastname'],
+            'middlename' => $officer['middlename'],
+            'sex' => $officer['sex'],
+            'created_at' => $user->created_at,
+            'updated_at' => $user->updated_at,
+            'department_id' => $officer['department_id'],
+        ];
+
+        Profiles::insert($officerprofile);
+
+        return redirect()->route('createOfficer');
     }
 }
 

@@ -5,6 +5,7 @@
 
 
 @section('content')
-
-    Hello {{ $profile->firstname }} {{ $profile->lastname }}
+    @auth
+        Hello {{ Auth::user()->profiles->firstname." ".Auth::user()->profiles->lastname}}
+    @endauth
 @endsection

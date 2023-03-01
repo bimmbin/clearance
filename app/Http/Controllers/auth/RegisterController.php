@@ -6,9 +6,7 @@ use App\Models\User;
 use Shuchkin\SimpleXLSX;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Profiles;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class RegisterController extends Controller
 {
@@ -20,21 +18,21 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            'username' => 'required|max:255',
+            // 'email' => 'required|email|max:255',
             'password' => 'required|confirmed',
         ]);
 
         User::create([
-            'name' => $request->name,
+            'username' => $request->username,
             'role' => $request->role,
-            'email' => $request->email,
+            // 'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        auth()->attempt($request->only('email', 'password'));
+        auth()->attempt($request->only('username', 'password'));
 
-        return redirect()->route('dashboard');
+        return redirect()->route('createstudent');
     }
 
     public function previewTable(Request $request)
@@ -61,7 +59,7 @@ class RegisterController extends Controller
 
         foreach ($request->studentno as $i => $studentnumber) {
 
-            $ran = $key = microtime() . floor(rand() * 10000);
+            $ran = microtime() . floor(rand() * 10000);
 
             $students[] = [
                 'username' => $request->lastname[$i] . $studentnumber,
@@ -89,6 +87,40 @@ class RegisterController extends Controller
 
 
         return redirect()->route('storeStudent');
+    }
+
+    public function registerOfficer(Request $request)
+    {
+
+        // dd();
+
+        $ran = microtime() . floor(rand() * 10000);
+
+        User::create([
+            'username' => $request->firstname.$request->employeeno,
+            'password' => Hash::make($request->employeeno),
+            'role' => 'officer',
+            'identify' => $ran,
+        ]);
+
+
+        $officer = [
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'middlename' => $request->middlename,
+            'employeeno' => $request->employeeno,
+            'username' => $request->lastname,
+            'sex' => $request->lastname,
+            'department_id' => $request->department_id,
+            'identify' => $ran,
+
+        ];
+
+        session(['officer' => $officer]);
+
+
+
+        return redirect()->route('storeOfficer');
     }
 }
 
