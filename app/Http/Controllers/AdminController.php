@@ -29,7 +29,7 @@ class AdminController extends Controller
 
 
         // dd($officers);
-        return view('admin.createOfficer', [
+        return view('admin.createofficer', [
             'officers' => $officers,
             'departments' => $departments
         ]);
