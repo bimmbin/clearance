@@ -5,6 +5,7 @@
 
 
 @section('content')
+<div class="flex w-full p-10 flex-col gap-5 lg:flex-row">
     <form class="flex flex-col items-center mx-10 gap-5 mt-14 max-xl:mb-14 sm:gap-3" action="{{ route('registerOfficer') }}"
         method="post">
         @csrf
@@ -31,8 +32,7 @@
             id="department" name="department">
 
             @foreach ($departments as $department)
-                <option class="bg-darkblue text-white" value="{{ $department->name }}">{{ $department->name }}</option>
-                <input type="hidden" name="department_id" value="{{ $department->id }}">
+                <option class="bg-darkblue text-white" value="{{ $department->id }}">{{ $department->name }}</option>
             @endforeach
 
 
@@ -91,4 +91,5 @@
             </tbody>
         </table>
     </div>
+</div>
 @endsection

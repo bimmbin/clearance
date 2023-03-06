@@ -7,6 +7,10 @@ use App\Models\Department;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     public function index()
     {
         $students = Profiles::whereRelation('user', 'role', 'student')->paginate(10);
@@ -20,7 +24,7 @@ class AdminController extends Controller
     {
         $officers = Profiles::whereRelation('user', 'role', 'officer')->latest()->get();
 
-        $departments = Department::latest()->get();
+        $departments = Department::doesntHave('profiles')->latest()->get();
         // return view('admin.createOfficer');
 
 

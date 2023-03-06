@@ -24,6 +24,6 @@ class LoginController extends Controller
         }
 
         // make a condition here for admin, officer and student
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 }

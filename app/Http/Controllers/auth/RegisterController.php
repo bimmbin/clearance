@@ -92,7 +92,7 @@ class RegisterController extends Controller
     public function registerOfficer(Request $request)
     {
 
-        // dd();
+        // dd($request->department);
 
         $ran = microtime() . floor(rand() * 10000);
 
@@ -111,7 +111,7 @@ class RegisterController extends Controller
             'employeeno' => $request->employeeno,
             'username' => $request->lastname,
             'sex' => $request->lastname,
-            'department_id' => $request->department_id,
+            'department_id' => $request->department,
             'identify' => $ran,
 
         ];

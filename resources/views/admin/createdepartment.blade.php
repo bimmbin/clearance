@@ -5,6 +5,9 @@
 
 
 @section('content')
+
+<div class="flex w-full p-10 flex-col gap-5 lg:flex-row">
+
     <form class="flex flex-col items-center mx-10 gap-5 mt-14 max-xl:mb-14 sm:gap-3" action="{{ route('store.department') }}"
         method="post">
         @csrf
@@ -55,4 +58,5 @@
             </tbody>
         </table>
     </div>
+</div>
 @endsection

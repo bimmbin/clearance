@@ -130,55 +130,55 @@
 
         <!-- leftcolumn -->
         @auth
-        <div class="flex flex-col items-center relative w-[200px] bg-darkblue h-auto max-md:hidden">
+            <div class="flex flex-col items-center relative w-[200px] bg-darkblue h-auto max-md:hidden">
 
-            <div class="flex-col flex items-center my-[30px]">
+                <div class="flex-col flex items-center my-[30px]">
 
-                <h1 class="text-white font-semibold text-2xl"><a href="{{ route('home') }}">Dashboard</a> </h1>
+                    <h1 class="text-white font-semibold text-2xl"><a href="{{ route('home') }}">Dashboard</a> </h1>
 
-            </div>
+                </div>
 
-            <ul class="flex flex-col items-center my-12 text-white">
+                <ul class="flex flex-col items-center my-12 text-white">
 
 
-                @if (Auth::user()->role === 'admin')
-                    <li
-                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                    @if (Auth::user()->role === 'admin')
+                        <li
+                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                        <img class="w-[20px] h-[20px]" src="img/icons/Student Center.png" alt="">
-                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                            href="{{ route('createstudent') }}">Student</a>
-                    </li>
+                            <img class="w-[20px] h-[20px]" src="img/icons/Student Center.png" alt="">
+                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                href="{{ route('createstudent') }}">Student</a>
+                        </li>
 
-                    <li
-                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                        <li
+                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                        <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
-                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                            href="{{ route('createOfficer') }}">Officer</a>
-                    </li>
+                            <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
+                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                href="{{ route('createOfficer') }}">Officer</a>
+                        </li>
 
-                    <li
-                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                        <li
+                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                        <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                            href="{{ route('createdepartment') }}">Department</a>
-                    </li>
-                @endif
+                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                href="{{ route('createdepartment') }}">Department</a>
+                        </li>
+                    @endif
 
-                
-                @if (Auth::user()->role === 'student')
-                    <li
-                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                        <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                            href="#">Clearance</a>
-                    </li>
-                @endif
+                    @if (Auth::user()->role === 'student')
+                        <li
+                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                {{-- <li
+                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                href="#">Clearance</a>
+                        </li>
+                    @endif
+
+                    {{-- <li
                     class="w-[130px] pt-3 flex gap-3 border-b gap-5 pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
                     <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
@@ -194,10 +194,10 @@
                         href="#">Section</a>
                 </li> --}}
 
-            </ul>
+                </ul>
 
-        </div>
-    
+            </div>
+
         @endauth
         <!-- right-column -->
         <div class="w-screen h-screen overflow-y-scroll scrollbar-y-hidden">
@@ -245,54 +245,77 @@
                         <span></span>
                         <span></span>
                     </label>
-                    <div class="burger-content bg-darkblue border border-blu">
+                    <div class="burger-content h-[35rem] bg-darkblue border border-blu">
 
-                        <ul class="flex flex-col items-center my-5 gap-2 text-white">
+                        <ul class="flex flex-col items-center my-5 text-white">
 
-                            <img class="w-[57px] h-[57px] max-lg:w-[40px] max-lg:h-[40px] max-2xl:w-[45px] max-2xl:h-[45px] max-sm:h-[35px] max-sm:w-[35px] max-md:w-[50px] max-md:h-[50px]"
-                                src="asset/user-profile.png" alt="user-profile">
+                            @auth
+                                @if (Auth::user()->role === 'admin')
+                                    <li
+                                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 mt-5 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14">
+                                        <img class="w-[20px] h-[20px]" src="img/icons/Student Center.png" alt="">
+                                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                            href="{{ route('createstudent') }}">Student</a>
+                                    </li>
 
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/Student Center.png"
-                                    alt="">
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Section</a>
-                            </li>
+                                    <li
+                                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                        <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
+                                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                            href="{{ route('createOfficer') }}">Officer</a>
+                                    </li>
 
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/Student Center.png"
-                                    alt="">
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Subject</a>
-                            </li>
+                                    <li
+                                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                        <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                            href="{{ route('createdepartment') }}">Department</a>
+                                    </li>
+                                @endif
 
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/Student Center.png"
-                                    alt="">
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Student</a>
-                            </li>
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                @if (Auth::user()->role === 'student')
+                                    <li
+                                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/School Director.png"
-                                    alt="">
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                    href="#">Instructor</a>
-                            </li>
+                                        <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                        <a class=""
+                                            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                            href="#">Clearance</a>
+                                    </li>
+                                @endif
+                            @endauth
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
 
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="asset/School Director.png"
-                                    alt="">
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Instructor
-                                    Subject</a>
-                            </li>
+                            @auth
+                                <li
+                                    class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                    <div class="bg-green-500 w-5 h-5 rounded-full"></div>
+                                    <a href="" class="p-3">{{ auth()->user()->username }}</a>
+                                </li>
+                                <li
+                                    class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                    <form action="{{ route('logout') }}" method="post" class="p-3 inline">
+                                        @csrf
+                                        <button type="submit"
+                                            class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">Logout</button>
+                                    </form>
+                                </li>
+                            @endauth
+
+                            @guest
+                                <li
+                                    class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                    <a href="{{ route('login') }}" class="p-3">Login</a>
+                                </li>
+                                <li
+                                    class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                    <a href="{{ route('register') }}" class="p-3">Register</a>
+                                </li>
+                            @endguest
 
                         </ul>
 
@@ -301,8 +324,7 @@
                 </div>
             </header>
 
-            <main
-                class="w-[97%] min-h-[80%] max-h-fit bg-white overflow-y-hidden mt-5 mx-auto rounded-2xl flex mb-10 max-xl:flex-col max-xl:h-auto">
+            <main class="w-[97%] h-auto bg-white  mt-5 mx-auto rounded-xl flex-col mb-10">
 
 
                 @yield('content')
