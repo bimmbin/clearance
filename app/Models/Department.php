@@ -17,4 +17,8 @@ class Department extends Model
     public function profiles() {
         return $this->hasOne(Profiles::class);
     }
+
+    public function clearance() {
+        return $this->hasMany(Clearance::class);
+    }
 }

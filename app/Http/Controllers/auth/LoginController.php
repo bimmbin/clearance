@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+
+        $student = User::firstWhere('role', 'student');
+
+        $admin = User::firstWhere('role', 'admin');
+
+        $officer = User::firstWhere('role', 'officer');
+        
+        return view('auth.login', [
+            'student' => $student,
+            'admin' => $admin,
+            'officer' => $officer
+        ]);
     }
 
     public function store(Request $request)

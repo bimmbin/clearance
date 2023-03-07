@@ -5,6 +5,23 @@
 
 
 @section('content')
+    @empty(!$student)
+        <p>Student Account:</p>
+        <p>Username: {{ $student->profiles->lastname . $student->profiles->studentno }}</p>
+        <p>Password: {{ $student->profiles->studentno }}</p></br>
+    @endempty
+
+    @empty(!$officer)
+        <p>Officer Account:</p>
+        <p>Username: {{ $officer->profiles->firstname . $officer->profiles->employeeno }}</p>
+        <p>Password: {{ $officer->profiles->employeeno }}</p></br>
+    @endempty
+
+    @empty(!$admin)
+        <p>Admin Account:</p>
+        <p>Username: {{ $admin->username }}</p>
+        <p>Password: 123</p>
+    @endempty
     <div class="w-full flex flex-col items-center">
         <div class="w-4/12 bg-white p-6 rounded-lg">
 

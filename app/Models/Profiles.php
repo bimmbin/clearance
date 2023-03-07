@@ -29,4 +29,8 @@ class Profiles extends Model
     public function department() {
         return $this->belongsTo(Department::class);
     }
+
+    public function clearance() {
+        return $this->hasMany(Clearance::class, 'profile_id');
+    }
 }

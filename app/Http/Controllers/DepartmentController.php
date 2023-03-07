@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,11 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::latest()->get();
+
+        
+        // $user = User::get();
+
+        // dd($user);
 
          return view('admin.createdepartment', [
             'departments' => $departments
@@ -22,7 +28,8 @@ class DepartmentController extends Controller
             'name' => $request->name,
         ]);
 
-        return back();
+
+        return redirect()->route('store.clearance');
 
     }
 }

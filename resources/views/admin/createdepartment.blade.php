@@ -45,7 +45,7 @@
                 <tr class="border">
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $department->name }}</td>
-                    {{-- <td>{{ $department->user()->profile-firstname }}</td> --}}
+                    <td>{{ $department->profiles->firstname }}</td>
                     <td class="flex gap-2 justify-center align-center p-3">
                         <img class="cursor-pointer hover:bg-sky-700" src="asset/edit-icon.png" alt="">
 
