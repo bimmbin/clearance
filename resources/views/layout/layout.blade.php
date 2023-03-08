@@ -174,7 +174,7 @@
 
                             <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
                             <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="#">Clearance</a>
+                                href="{{ route('student.clearance') }}">Clearance</a>
                         </li>
                     @endif
 
@@ -284,7 +284,7 @@
                                         <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
                                         <a class=""
                                             style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                            href="#">Clearance</a>
+                                            href="{{ route('student.clearance') }}">Clearance</a>
                                     </li>
                                 @endif
                             @endauth

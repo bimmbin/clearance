@@ -53,3 +53,6 @@ Route::get('/create/clearance', [ClearanceController::class, 'store'])->name('st
 
 Route::post('/registerOfficer', [RegisterController::class, 'registerOfficer'])->name('registerOfficer');
 Route::get('/storeOfficer', [ProfilesController::class, 'storeOfficer'])->name('storeOfficer');
+
+// student
+Route::get('/clearance', [ClearanceController::class, 'index'])->name('student.clearance');

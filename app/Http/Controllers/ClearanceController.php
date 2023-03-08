@@ -7,9 +7,22 @@ use App\Models\Profiles;
 use App\Models\Clearance;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClearanceController extends Controller
 {
+    public function index()
+    {
+
+        $clearances = Auth::user()->profiles->clearance;
+        // $clearance = Clearance::has('profiles')->get();
+        // return view('student.studentclearance');
+        
+        // dd($clearance);
+        return view('student.studentclearance', [
+            'clearances' => $clearances
+        ]);
+    }
     public function store()
     {
 

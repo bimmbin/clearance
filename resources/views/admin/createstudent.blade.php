@@ -49,7 +49,7 @@
             <tbody class="space-y-6 border text-center">
 
                 @foreach ($students as $student)
-                    <tr class="border-2 bg-gray-100">
+                    <tr class="border bg-tablebg">
                         <td class="py-2">{{ ($students->currentPage() - 1) * $students->perPage() + $loop->iteration }}
                         </td>
                         <td>{{ $student->studentno }}</td>

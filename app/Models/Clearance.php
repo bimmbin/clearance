@@ -19,6 +19,6 @@ class Clearance extends Model
         return $this->belongsTo(Department::class);
     }
     public function profiles() {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(Profiles::class, 'profile_id');
     }
 }
