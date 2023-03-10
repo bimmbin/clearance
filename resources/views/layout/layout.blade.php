@@ -30,6 +30,8 @@
                         tableborderr: '#B5B5B5',
                         checkb: '#1812A4',
                         tablebg: '#FAFAFA',
+                        btnbg: '#D6D8F3',
+                        btnhoverbg: '#BFC5FF',
                     }
                 }
             }
@@ -279,15 +281,18 @@
                                         class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
                                         <img class="w-[20px] h-[20px]" src="img/icons/Student Center.png" alt="">
-                                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                        <a class=""
+                                            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
                                             href="{{ route('createstudent') }}">Student</a>
                                     </li>
 
                                     <li
                                         class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                                        <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
-                                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                        <img class="w-[20px] h-[20px]" src="img/icons/School Director.png"
+                                            alt="">
+                                        <a class=""
+                                            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
                                             href="{{ route('createOfficer') }}">Officer</a>
                                     </li>
 
@@ -295,7 +300,8 @@
                                         class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
                                         <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                        <a class=""
+                                            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
                                             href="{{ route('createdepartment') }}">Department</a>
                                     </li>
                                 @endif
@@ -311,7 +317,7 @@
                                             href="{{ route('student.clearance') }}">Clearance</a>
                                     </li>
                                 @endif
-                                
+
                                 @if (Auth::user()->role === 'officer')
                                     <li
                                         class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
@@ -385,5 +391,19 @@
     </section>
 
 </body>
+
+<script>
+    @foreach (range(1, 10) as $i)
+        function dropEdit{{ $loop->index }}() {
+            document.getElementById("edit-{{ $loop->index }}").classList.toggle("hidden");
+        }
+
+        function dropSetting{{ $loop->index }}() {
+            document.getElementById("setting-{{ $loop->index }}").classList.toggle("hidden");
+        }
+    @endforeach
+
+    @yield('script')
+</script>
 
 </html>

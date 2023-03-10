@@ -59,7 +59,7 @@
                     <th>Name</th>
                     <th>Employee No.</th>
                     <th>Department</th>
-                    <th class="flex justify-center pb-3">Action</th>
+                    <th>Action</th>
                 </tr>
             </thead>
 
@@ -71,10 +71,39 @@
                             <td>{{ $officer->firstname . ' ' . $officer->lastname }}</td>
                             <td>{{ $officer->employeeno }}</td>
                             <td>{{ $officer->department->name }}</td>
-                            <td class="flex gap-2 justify-center align-center p-3">
-                                <img class="cursor-pointer hover:bg-sky-700" src="asset/edit-icon.png" alt="">
-
-                                <img class="cursor-pointer hover:bg-sky-700" src="asset/setting-icon.png" alt="">
+                            <td class="py-2 flex gap-2">
+                    
+                                <div class="relative">
+                                    <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
+                                        onclick="dropEdit{{ $loop->index }}()">
+                                        <img class="max-w-[29px] max-h-[29px]" src="img/icons/edit-icon.png" alt="">
+        
+                                    </div>
+                                    <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
+                                        id="edit-{{ $loop->index }}">
+                                        <form action="" method="post" class="flex flex-col">
+                                            @csrf
+                                            <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Name</button>
+                                            <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Lastname</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="relative">
+                                    <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
+                                        onclick="dropSetting{{ $loop->index }}()">
+                                        <img class="max-w-[29px] max-h-[29px]" src="img/icons/setting-icon.png" alt="">
+        
+                                    </div>
+                                    <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
+                                        id="setting-{{ $loop->index }}">
+                                        <form action="" method="post" class="flex flex-col">
+                                            @csrf
+                                            <button class="py-3 px-5 hover:bg-btnhoverbg">Approve</button>
+                                            <button class="py-3 px-5 hover:bg-btnhoverbg">dispprove</button>
+                                        </form>
+                                    </div>
+                                </div>
+                              
                             </td>
                         </tr>
                     @endforeach

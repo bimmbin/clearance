@@ -24,7 +24,7 @@
 
     <div class="border h-[90%] my-auto max-xl:w-[90%] max-xl:h-0 max-xl:mx-auto max-xl:my-0"></div>
 
-    <div class="w-full pb-10 overflow-x-auto my-14 px-10">
+    <div class="w-full pb-10 overflow-x-auto  overflow-y-visible my-14 px-10 h-full">
         <h1 class="text-blacky text-left font-semibold mb-5"
             style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">List of Department Officers</h1>
 
@@ -45,11 +45,40 @@
                 <tr class="border">
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $department->name }}</td>
-                    {{-- <td>{{ $department->profiles->firstname }}</td> --}}
-                    <td class="flex gap-2 justify-center align-center p-3">
-                        <img class="cursor-pointer hover:bg-sky-700" src="asset/edit-icon.png" alt="">
+                    <td>fix this later</td>
+                    <td class="py-2 flex gap-2">
+                    
+                        <div class="relative">
+                            <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
+                                onclick="dropEdit{{ $loop->index }}()">
+                                <img class="max-w-[29px] max-h-[29px]" src="img/icons/edit-icon.png" alt="">
 
-                        <img class="cursor-pointer hover:bg-sky-700" src="asset/setting-icon.png" alt="">
+                            </div>
+                            <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
+                                id="edit-{{ $loop->index }}">
+                                <form action="" method="post" class="flex flex-col">
+                                    @csrf
+                                    <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Name</button>
+                                    <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Lastname</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
+                                onclick="dropSetting{{ $loop->index }}()">
+                                <img class="max-w-[29px] max-h-[29px]" src="img/icons/setting-icon.png" alt="">
+
+                            </div>
+                            <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
+                                id="setting-{{ $loop->index }}">
+                                <form action="" method="post" class="flex flex-col">
+                                    @csrf
+                                    <button class="py-3 px-5 hover:bg-btnhoverbg">Approve</button>
+                                    <button class="py-3 px-5 hover:bg-btnhoverbg">dispprove</button>
+                                </form>
+                            </div>
+                        </div>
+                      
                     </td>
                 </tr>
             @endforeach
