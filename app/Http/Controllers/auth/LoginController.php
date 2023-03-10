@@ -36,6 +36,17 @@ class LoginController extends Controller
         }
 
         // make a condition here for admin, officer and student
-        return redirect()->route('home');
+        $user = auth()->user();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('createstudent');
+        } elseif ($user->role === 'officer') {
+            return redirect()->route('pending.clearance');
+        } elseif ($user->role === 'student') {
+            return redirect()->route('student.clearance');
+        }
+
+
+        // return redirect()->route('home');
     }
 }
