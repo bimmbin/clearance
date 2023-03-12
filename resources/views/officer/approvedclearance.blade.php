@@ -58,7 +58,7 @@
                         <td class="py-2  pl-10">{{ $clearance->profiles->section }}</td>
                         <td class="py-2  pl-10 flex gap-2">
                     
-                            <div class="relative">
+                            <div class="relative whitespace-nowrap">
                                 <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
                                     onclick="dropEdit{{ $loop->index }}()">
                                     <img class="max-w-[29px] max-h-[29px]" src="img/icons/edit-icon.png" alt="">
@@ -81,10 +81,9 @@
                                 </div>
                                 <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
                                     id="setting-{{ $loop->index }}">
-                                    <form action="" method="post" class="flex flex-col">
+                                    <form action="{{ route('disapprove.clearance', $clearance->id) }}" method="post" class="flex flex-col">
                                         @csrf
-                                        <button class="py-3 px-5 hover:bg-btnhoverbg">Approve</button>
-                                        <button class="py-3 px-5 hover:bg-btnhoverbg">dispprove</button>
+                                        <button class="py-3 px-5 hover:bg-btnhoverbg">Disapprove</button>
                                     </form>
                                 </div>
                             </div>

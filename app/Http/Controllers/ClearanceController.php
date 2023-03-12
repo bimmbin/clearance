@@ -50,6 +50,26 @@ class ClearanceController extends Controller
 
         return back();
     }
+
+    public function approve($id) {
+        $clearance = Clearance::findOrFail($id);
+
+        $clearance->status = 'approved';
+
+        $clearance->save();
+
+        return back();
+    }
+
+    public function disapprove($id) {
+        $clearance = Clearance::findOrFail($id);
+
+        $clearance->status = 'disapproved';
+
+        $clearance->save();
+
+        return back();
+    }
 }
 
 

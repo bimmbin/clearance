@@ -40,6 +40,7 @@
                     <th class="text-left pl-10">Year</th>
                     <th class="text-left pl-10">Course</th>
                     <th class="text-left pl-10">Section</th>
+                    <th class="text-left pl-10">Action</th>
                 </tr>
             </thead>
 
@@ -54,7 +55,43 @@
                         <td class="py-2  pl-10">{{ $clearance->profiles->year }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->course }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->section }}</td>
-                       
+                        <td class="py-2  pl-10 flex gap-2">
+                    
+                            <div class="relative whitespace-nowrap">
+                                <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
+                                    onclick="dropEdit{{ $loop->index }}()">
+                                    <img class="max-w-[29px] max-h-[29px]" src="img/icons/edit-icon.png" alt="">
+
+                                </div>
+                                <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
+                                    id="edit-{{ $loop->index }}">
+                                    <form action="" method="post" class="flex flex-col">
+                                        @csrf
+                                        <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Name</button>
+                                        <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Lastname</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
+                                    onclick="dropSetting{{ $loop->index }}()">
+                                    <img class="max-w-[29px] max-h-[29px]" src="img/icons/setting-icon.png" alt="">
+
+                                </div>
+                                <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
+                                    id="setting-{{ $loop->index }}">
+                                    <form action="{{ route('approve.clearance', $clearance->id) }}" method="post" class="flex flex-col">
+                                        @csrf
+                                        <button class="py-3 px-5 hover:bg-btnhoverbg">Approve</button>
+                                    </form>
+                                    <form action="{{ route('disapprove.clearance', $clearance->id) }}" method="post" class="flex flex-col">
+                                        @csrf
+                                        <button class="py-3 px-5 hover:bg-btnhoverbg">Disapprove</button>
+                                    </form>
+                                </div>
+                            </div>
+                          
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

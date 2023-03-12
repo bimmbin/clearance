@@ -15,6 +15,7 @@ class OfficerController extends Controller
 
         $clearances = Clearance::whereRelation('department', 'id', $deptId)
             ->where('status', 'approved')
+            ->orderBy('updated_at', 'desc')
             ->paginate(10);
 
         // dd($clearances);
@@ -28,10 +29,11 @@ class OfficerController extends Controller
 
         $clearances = Clearance::whereRelation('department', 'id', $deptId)
             ->where('status', 'disapproved')
+            ->orderBy('updated_at', 'desc')
             ->paginate(10);
 
         // dd($clearances);
-        return view('officer.approvedclearance', [
+        return view('officer.disapprovedclearance', [
             'clearances' => $clearances
         ]);
     }
@@ -44,7 +46,7 @@ class OfficerController extends Controller
             ->paginate(10);
 
         // dd($clearances);
-        return view('officer.approvedclearance', [
+        return view('officer.pendingclearance', [
             'clearances' => $clearances
         ]);
     }
