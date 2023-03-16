@@ -15,8 +15,15 @@
             style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">Create
             Department</h1>
             {{-- max-lg:w-6/12 max-sm:w-11/12 --}}
-        <input class="py-2 border-2 max-sm:w-11/12  rounded-xl px-5 mt-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px]" type="text"
+        <input class="py-2 border-2 max-sm:w-11/12  rounded-xl px-5 mt-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px] @error('name') border-red-500 @enderror"
+        value="{{ old('name') }}" type="text"
             placeholder="Department Name" name="name">
+
+            @error('name')
+            <div class="text-red-500 max-sm:mt-[-1rem] mt-[-0.5rem] text-sm">
+                {{ $message }}
+            </div>
+        @enderror
 
         <button
             class="py-2 rounded-xl px-5 max-sm:w-11/12 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px] bg-darkblue text-white hover:bg-sky-700">Submit</button>
@@ -24,7 +31,7 @@
 
     <div class="border h-[90%] my-auto max-xl:w-[90%] max-xl:h-0 max-xl:mx-auto max-xl:my-0"></div>
 
-    <div class="w-full pb-10 overflow-x-auto  overflow-y-visible my-14 px-10 h-full">
+    <div class="w-full pb-10 overflow-x-auto  overflow-y-visible my-14 px-10 h-full max-sm:px-5 max-sm:my-6">
         <h1 class="text-blacky text-left font-semibold mb-5"
             style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">List of Department Officers</h1>
 

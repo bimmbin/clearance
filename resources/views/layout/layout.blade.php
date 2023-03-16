@@ -215,7 +215,7 @@
         <div class="w-screen h-screen overflow-y-scroll scrollbar-y-hidden">
 
             <!-- header -->
-            <header class="flex w-[100%] bg-white items-center justify-between py-[20px] px-[50px]">
+            <header class="flex w-[100%] bg-white items-center justify-between max-sm:py-[15px] max-sm:px-[25px] py-[20px] px-[50px]">
 
                 <a href="{{ route('home') }}"><img class="w-[150px] max-2xl:w-[120px]" src="img/icons/CHCC logo.png"
                         alt=""></a>
@@ -257,7 +257,7 @@
                         <span></span>
                         <span></span>
                     </label>
-                    <div class="burger-content h-[35rem] bg-darkblue border border-blu">
+                    <div class="burger-content h-[35rem] bg-darkblue border border-blu absolute z-10">
 
                         <ul class="flex flex-col items-center my-5 text-white">
 

@@ -14,9 +14,6 @@ class ProfilesController extends Controller
         $students = session('students');
         // dd($students);
         $users = User::whereIn('identify', array_column($students, 'identify'))->get();
-
-
-
         $users = User::whereIn('identify', array_column($students, 'identify'))->get();
         $userIds = [];
         foreach ($users as $user) {
@@ -29,8 +26,10 @@ class ProfilesController extends Controller
 
         foreach ($students as $i => $student) {
 
-            $person = $userIds[$student['identify']];
+            // $person = $userIds[$student['identify']];
 
+            $person = $userIds[$student['identify']];
+            // dd($person);
             $studentsprofile[] = [
                 'user_id' => $person,
                 'studentno' => $student['studentno'],

@@ -24,7 +24,12 @@ class DepartmentController extends Controller
     }
     public function store(Request $request)
     {
-        Department::create([
+
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        Department::firstOrCreate([
             'name' => $request->name,
         ]);
 

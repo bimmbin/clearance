@@ -44,29 +44,42 @@ class RegisterController extends Controller
 
     public function registerStudent(Request $request)
     {
-
-
-
-        // $studentAcc = [];
-
-        $students = [];
+        // $param1 = [];
+        // $param2 = [];
+        $exStudents = [];
         $studentsprofile = [];
-
-
-        // dd($ran);
-        $studentPasswords = [];
-
 
         foreach ($request->studentno as $i => $studentnumber) {
 
             $ran = microtime() . floor(rand() * 10000);
 
-            $students[] = [
-                'username' => $request->lastname[$i] . $studentnumber,
+            // $students[] = [
+            //     'username' => $request->lastname[$i] . $studentnumber,
+            //     'password' => Hash::make($studentnumber),
+            //     'role' => 'student',
+            //     'identify' => $ran,
+            // ];
+          
+            // $students = User::firstOrCreate([
+            //     'username' => $request->lastname[$i] . $studentnumber,
+            // ], [
+            //     'password' => Hash::make($studentnumber),
+            //     'role' => 'student',
+            //     'identify' => $ran,
+            // ]);
+            // $exStudents[] = $students;
+
+
+            $user = User::firstOrNew(['username' => $request->lastname[$i] . $studentnumber], [
                 'password' => Hash::make($studentnumber),
                 'role' => 'student',
                 'identify' => $ran,
-            ];
+            ]);
+        
+            if (!$user->exists) {
+                $user->save();
+            }
+
             $studentsprofile[] = [
                 'studentno' => $studentnumber,
                 'firstname' => $request->firstname[$i],
@@ -79,8 +92,10 @@ class RegisterController extends Controller
                 'identify' => $ran,
             ];
         }
+      
+        // $exStudents = User::firstOrCreate($param1, $param2);
+        // dd($exStudents);
 
-        User::insert($students);
 
         session(['students' => $studentsprofile]);
 
@@ -92,12 +107,18 @@ class RegisterController extends Controller
     public function registerOfficer(Request $request)
     {
 
+        $this->validate($request, [
+            'employeeno' => 'required|min:8',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'middlename' => 'required',
+        ]);
         // dd($request->department);
 
         $ran = microtime() . floor(rand() * 10000);
 
         User::create([
-            'username' => $request->firstname.$request->employeeno,
+            'username' => $request->firstname . $request->employeeno,
             'password' => Hash::make($request->employeeno),
             'role' => 'officer',
             'identify' => $ran,

@@ -29,7 +29,7 @@
     <div class="w-full h-fit pb-28 overflow-x-auto px-3 lg:px-10 xl:px-10 overflow-y-hidden">
 
         <table id="dataTable" class="pl-5 table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] text-lg xl:w-full"
-            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem); ">
+            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem); whitespace-nowrap">
             <thead>
                 <tr class="space-y-3 text-sm md:text-base lg:text-lg font-bold text-start">
                     <th class="text-left pl-10">No.</th>
