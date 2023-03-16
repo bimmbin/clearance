@@ -107,16 +107,7 @@
                             </td>
                         </tr>
                     @endforeach
-                {{-- @endif --}}
-                {{-- {{ Auth::user()->role === 'officer'}}  --}}
-
-                @if (Auth::user()->role === 'officer')
-                    I am officer
-                @endif
-
-                @if (Auth::user()->role === 'student')
-                    I am student
-                @endif
+           
             </tbody>
         </table>
     </div>

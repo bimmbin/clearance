@@ -13,7 +13,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-
+    
+        <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -204,22 +205,7 @@
                         </li>
                     @endif
 
-                    {{-- <li
-                    class="w-[130px] pt-3 flex gap-3 border-b gap-5 pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                    <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
-                    <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                        href="#">Instructor Subject</a>
-                </li>
-
-                <li
-                    class="w-[130px] flex gap-3 border-b gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                    <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                    <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                        href="#">Section</a>
-                </li> --}}
-
+              
                 </ul>
 
             </div>

@@ -25,6 +25,7 @@ use App\Http\Controllers\Auth\RegisterController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/homes', [HomeController::class, 'store'])->name('homes');
 
 Route::get('/register', [RegisterController::class, 'index'])
     ->name('register')
