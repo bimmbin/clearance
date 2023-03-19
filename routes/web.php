@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\ProfilesController;
-use App\Http\Controllers\ClearanceController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\student\ClearanceController;
+use App\Http\Controllers\admin\CreateStudentController;
+use App\Http\Controllers\admin\RegisterStudentController;
+use App\Http\Controllers\admin\CreateDepartmentController;
+use App\Http\Controllers\officer\ClearanceActionController;
+use App\Http\Controllers\officer\StudentClearanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +33,10 @@ Route::get('/register', [RegisterController::class, 'index'])
     ->name('register')
     ->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
-Route::post('/reg', [RegisterController::class, 'registerStudent'])->name('registerStudent');
 
 
-Route::get('/storeStudent', [ProfilesController::class, 'storeStudent'])->name('storeStudent');
-Route::post('/previewTable', [RegisterController::class, 'previewTable'])->name('previewTable');
+
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
@@ -45,16 +46,24 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 // admin
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/createstudent', [AdminController::class, 'index'])->name('createstudent');
-    Route::get('/createofficer', [AdminController::class, 'createOfficer'])->name('createOfficer');
 
-    Route::get('/createdepartment', [DepartmentController::class, 'index'])->name('createdepartment');
-    Route::post('/create/department', [DepartmentController::class, 'store'])->name('store.department');
+    //student create
+    Route::get('/createstudent', [CreateStudentController::class, 'index'])->name('createstudent');
+    Route::post('/previewTable', [RegisterStudentController::class, 'previewTable'])->name('previewTable');
+Route::post('/reg', [RegisterStudentController::class, 'registerStudent'])->name('registerStudent');
 
-    Route::get('/create/clearance', [ClearanceController::class, 'store'])->name('store.clearance');
-
+    //officer create
     Route::post('/registerOfficer', [RegisterController::class, 'registerOfficer'])->name('registerOfficer');
     Route::get('/storeOfficer', [ProfilesController::class, 'storeOfficer'])->name('storeOfficer');
+
+    //department create
+    Route::get('/createdepartment', [CreateDepartmentController::class, 'index'])->name('createdepartment');
+    Route::post('/create/department', [CreateDepartmentController::class, 'store'])->name('store.department');
+
+    //clearance create
+    Route::get('/create/clearance', [ClearanceController::class, 'store'])->name('store.clearance');
+
+    
 });
 
 
@@ -67,10 +76,10 @@ Route::middleware(['auth', 'student'])->group(function () {
 
 // officer
 Route::middleware(['auth', 'officer'])->group(function () {
-    Route::get('/approved-clearance', [OfficerController::class, 'approved'])->name('approved.clearance');
-    Route::get('/disapproved-clearance', [OfficerController::class, 'disapproved'])->name('disapproved.clearance');
-    Route::get('/pending-clearance', [OfficerController::class, 'pending'])->name('pending.clearance');
+    Route::get('/approved-clearance', [StudentClearanceController::class, 'approved'])->name('approved.clearance');
+    Route::get('/disapproved-clearance', [StudentClearanceController::class, 'disapproved'])->name('disapproved.clearance');
+    Route::get('/pending-clearance', [StudentClearanceController::class, 'pending'])->name('pending.clearance');
 
-    Route::post('/clearance/approve/{id}', [ClearanceController::class, 'approve'])->name('approve.clearance');
-    Route::post('/clearance/disapprove/{id}', [ClearanceController::class, 'disapprove'])->name('disapprove.clearance');
+    Route::post('/clearance/approve/{id}', [ClearanceActionController::class, 'approve'])->name('approve.clearance');
+    Route::post('/clearance/disapprove/{id}', [ClearanceActionController::class, 'disapprove'])->name('disapprove.clearance');
 });

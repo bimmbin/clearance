@@ -22,7 +22,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('role');
-            $table->string('identify')->nullable();
         });
     }
 

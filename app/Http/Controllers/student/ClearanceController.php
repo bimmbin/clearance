@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\student;
 
 use App\Models\Profiles;
 use App\Models\Clearance;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ClearanceController extends Controller
@@ -71,16 +71,3 @@ class ClearanceController extends Controller
         return back();
     }
 }
-
-
-
-
-
-
-
-
-                // Clearance::create([
-                //     'department_id' => $department->id,
-                //     'profile_id' => $user->id,
-                //     'status' => 'pending',
-                // ]);

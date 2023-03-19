@@ -5,54 +5,12 @@
 
 
 @section('content')
-    {{-- <form action="{{ route('registerStudent') }}" method="post" class="">
-        @csrf
-
-        <table class="" style="border-collapse: collapse">
-            <thead>
-                <tr>
-                    <th class="text-start">studentno</th>
-                    <th class="text-start">lastname</th>
-                    <th class="text-start">firstname</th>
-                    <th class="text-start">middlename</th>
-                    <th class="text-start">sex</th>
-                    <th class="text-start">year</th>
-                    <th class="text-start">course</th>
-                    <th class="text-start">section</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @php $headings = 0; @endphp
-                @foreach ($students->rows() as $student)
-                    @if ($headings != 0 && $headings != 1)
-                        <tr>
-                            <td>{{ $student[0] }} <input type="hidden" name="studentno[]" value="{{ $student[0] }}">
-                            </td>
-                            <td>{{ $student[1] }} <input type="hidden" name="lastname[]" value="{{ $student[1] }}">
-                            </td>
-                            <td>{{ $student[2] }} <input type="hidden" name="firstname[]" value="{{ $student[2] }}">
-                            </td>
-                            <td>{{ $student[3] }} <input type="hidden" name="middlename[]" value="{{ $student[3] }}">
-                            </td>
-                            <td>{{ $student[4] }} <input type="hidden" name="sex[]" value="{{ $student[4] }}"></td>
-                            <td>{{ $student[5] }} <input type="hidden" name="year[]" value="{{ $student[5] }}"></td>
-                            <td>{{ $student[6] }} <input type="hidden" name="course[]" value="{{ $student[6] }}">
-                            </td>
-                            <td>{{ $student[7] }} <input type="hidden" name="section[]" value="{{ $student[7] }}">
-                            </td>
-                        </tr>
-                    @endif
-                    @php $headings++; @endphp
-                @endforeach
-            </tbody>
-        </table>
-        <button class="">submit</button>
-    </form> --}}
-    <div class="flex flex-col py-5 px-5 gap-4 md:px-10 xl:flex-row xl:justify-between">
+    
+    <div class="flex flex-col py-5 px-5 gap-4 md:px-10 xl:flex-row items-center">
 
         <h1 class="text-blacky font-semibold" style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">Excel file
             info</h1>
+             <h1 class="text-red-700 font-md ">Found: {{ count($exusers) }} Existing Students</h1>
 
     </div>
     <form action="{{ route('registerStudent') }}" method="post" class="relative">
@@ -82,9 +40,12 @@
                     @php $headings = 0; @endphp
                     @foreach ($students->rows() as $student)
                         @if ($headings != 0 && $headings != 1)
-                            <tr class="border bg-tablebg">
+                            <tr class="border bg-tablebg  
+                            
+                            @if(in_array($student[2].$student[0], $exusers)) !bg-red-300 @endif  ">
+
                                 <td class="py-2 text-center">
-                                    {{ $loop->iteration }}
+                                    {{ $loop->iteration - 2 }}
                                 </td>
                                 <td class="pl-5">{{ $student[0] }} <input type="hidden" name="studentno[]"
                                         value="{{ $student[0] }}"></td>

@@ -158,7 +158,8 @@
 
                             <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
                             <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('createOfficer') }}">Officer</a>
+                                href="">Officer</a>
+                                {{-- {{ route('createOfficer') }} --}}
                         </li>
 
                         <li
@@ -279,7 +280,8 @@
                                             alt="">
                                         <a class=""
                                             style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                            href="{{ route('createOfficer') }}">Officer</a>
+                                            href="">Officer</a>
+                                            {{-- {{ route('createOfficer') }} --}}
                                     </li>
 
                                     <li

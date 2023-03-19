@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\officer;
 
 use App\Models\Clearance;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class OfficerController extends Controller
+class StudentClearanceController extends Controller
 {
     public function approved()
     {
