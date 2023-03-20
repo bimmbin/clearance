@@ -43,10 +43,6 @@ class RegisterStudentController extends Controller
     
     public function registerStudent(Request $request)
     {
-        // $param1 = [];
-        // $param2 = [];
-        $exStudents = [];
-        $studentsprofile = [];
 
         foreach ($request->studentno as $i => $studentnumber) {
 
@@ -55,7 +51,6 @@ class RegisterStudentController extends Controller
             $user = User::firstOrNew(['username' => $request->lastname[$i] . $studentnumber], [
                 'password' => Hash::make($studentnumber),
                 'role' => 'student',
-                'identify' => $ran,
             ]);
             
             

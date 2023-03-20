@@ -7,7 +7,8 @@
 @section('content')
     <div class="flex w-full p-10 max-sm:p-2 max-sm:pt-8 flex-col gap-5 lg:flex-row">
         <form class="flex flex-col items-center max-sm:my-1 max-sm:mx-0  mx-10 gap-5 mt-14 max-xl:mb-14 sm:gap-3"
-            action="{{ route('registerOfficer') }}" method="post">
+            action="{{ route('admin.createofficer') }}" method="post">
+
             @csrf
             <h1 class="text-blacky text-center font-semibold"
                 style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">Create
@@ -55,8 +56,8 @@
             {{-- <input class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px]"
                 type="text" placeholder="Sex" name="sex"> --}}
 
-            <select
-                class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px]" value="Male">Male</option>
+            <select class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px]"
+                value="Male">Male</option>
                 <option class="bg-darkblue text-white" value="Male">Female</option>
 
             </select>
@@ -99,51 +100,52 @@
                 </thead>
 
                 <tbody class="space-y-6 font-semibold bg-tablebg">
-                    {{-- @if ($officers->isEmpty()) --}}
-                    @foreach ($officers as $officer)
-                        <tr class="border">
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $officer->firstname . ' ' . $officer->lastname }}</td>
-                            <td>{{ $officer->employeeno }}</td>
-                            <td>{{ $officer->department->name }}</td>
-                            <td class="py-2 flex gap-2">
+                    @if (!$officers->isEmpty())
+                        @foreach ($officers as $officer)
+                            <tr class="border">
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $officer->firstname . ' ' . $officer->lastname }}</td>
+                                <td>{{ $officer->employeeno }}</td>
+                                <td>{{ $officer->department->name }}</td>
+                                <td class="py-2 flex gap-2">
 
-                                <div class="relative">
-                                    <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
-                                        onclick="dropEdit{{ $loop->index }}()">
-                                        <img class="max-w-[29px] max-h-[29px]" src="img/icons/edit-icon.png" alt="">
+                                    <div class="relative">
+                                        <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
+                                            onclick="dropEdit{{ $loop->index }}()">
+                                            <img class="max-w-[29px] max-h-[29px]" src="img/icons/edit-icon.png"
+                                                alt="">
 
+                                        </div>
+                                        <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
+                                            id="edit-{{ $loop->index }}">
+                                            <form action="" method="post" class="flex flex-col">
+                                                @csrf
+                                                <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Name</button>
+                                                <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Lastname</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
-                                        id="edit-{{ $loop->index }}">
-                                        <form action="" method="post" class="flex flex-col">
-                                            @csrf
-                                            <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Name</button>
-                                            <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Lastname</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="relative">
-                                    <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
-                                        onclick="dropSetting{{ $loop->index }}()">
-                                        <img class="max-w-[29px] max-h-[29px]" src="img/icons/setting-icon.png"
-                                            alt="">
+                                    <div class="relative">
+                                        <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
+                                            onclick="dropSetting{{ $loop->index }}()">
+                                            <img class="max-w-[29px] max-h-[29px]" src="img/icons/setting-icon.png"
+                                                alt="">
 
+                                        </div>
+                                        <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
+                                            id="setting-{{ $loop->index }}">
+                                            <form action="" method="post" class="flex flex-col">
+                                                @csrf
+                                                <button class="py-3 px-5 hover:bg-btnhoverbg">Approve</button>
+                                                <button class="py-3 px-5 hover:bg-btnhoverbg">dispprove</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
-                                        id="setting-{{ $loop->index }}">
-                                        <form action="" method="post" class="flex flex-col">
-                                            @csrf
-                                            <button class="py-3 px-5 hover:bg-btnhoverbg">Approve</button>
-                                            <button class="py-3 px-5 hover:bg-btnhoverbg">dispprove</button>
-                                        </form>
-                                    </div>
-                                </div>
 
-                            </td>
-                        </tr>
-                    @endforeach
-
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

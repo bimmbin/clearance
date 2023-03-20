@@ -7,7 +7,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\student\ClearanceController;
+use App\Http\Controllers\admin\CreateOfficerController;
 use App\Http\Controllers\admin\CreateStudentController;
+use App\Http\Controllers\admin\RegisterOfficerController;
 use App\Http\Controllers\admin\RegisterStudentController;
 use App\Http\Controllers\admin\CreateDepartmentController;
 use App\Http\Controllers\officer\ClearanceActionController;
@@ -50,11 +52,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //student create
     Route::get('/createstudent', [CreateStudentController::class, 'index'])->name('createstudent');
     Route::post('/previewTable', [RegisterStudentController::class, 'previewTable'])->name('previewTable');
-Route::post('/reg', [RegisterStudentController::class, 'registerStudent'])->name('registerStudent');
+    Route::post('/reg', [RegisterStudentController::class, 'registerStudent'])->name('registerStudent');
 
     //officer create
-    Route::post('/registerOfficer', [RegisterController::class, 'registerOfficer'])->name('registerOfficer');
-    Route::get('/storeOfficer', [ProfilesController::class, 'storeOfficer'])->name('storeOfficer');
+
+    Route::get('/officer', [CreateOfficerController::class, 'index'])->name('admin.officerview');
+    Route::post('/officercreate', [RegisterOfficerController::class, 'store'])->name('admin.createofficer');
 
     //department create
     Route::get('/createdepartment', [CreateDepartmentController::class, 'index'])->name('createdepartment');
@@ -62,8 +65,6 @@ Route::post('/reg', [RegisterStudentController::class, 'registerStudent'])->name
 
     //clearance create
     Route::get('/create/clearance', [ClearanceController::class, 'store'])->name('store.clearance');
-
-    
 });
 
 
