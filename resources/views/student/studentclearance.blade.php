@@ -28,7 +28,8 @@
 
     <div class="w-full pb-10 overflow-x-auto px-3 lg:px-10 xl:px-10">
 
-        <table id="dataTable" class="pl-5 table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] text-lg xl:w-full"
+        <table id="dataTable"
+            class="pl-5 table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] text-lg xl:w-full"
             style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">
             <thead>
                 <tr class="space-y-3 text-sm md:text-base lg:text-lg font-bold text-start">
@@ -42,17 +43,27 @@
 
             <tbody class="text-left">
                 @foreach ($clearances as $clearance)
-                    <tr class="border text-sm md:text-base lg:text-lg font-regular bg-{{ $clearance->status == 'approved' ? 'green-300' : ($clearance->status == 'disapproved' ? 'red-300' : 'tablebg') }}">
+                    <tr
+                        class="border text-sm md:text-base lg:text-lg font-regular bg-{{ $clearance->status == 'approved' ? 'green-300' : ($clearance->status == 'disapproved' ? 'red-300' : 'tablebg') }}">
                         <td class="py-2  pl-10">{{ $loop->iteration }}</td>
                         <td class="py-2  pl-10">{{ $clearance->department->name }}</td>
-                        <td class="py-2  pl-10">{{ $clearance->department->profiles->firstname." ".$clearance->department->profiles->lastname }}</td>
+                        <td class="py-2  pl-10">
+                            {{ $clearance->department->profiles->firstname . ' ' . $clearance->department->profiles->lastname }}
+                        </td>
                         <td class="py-2  pl-10">{{ $clearance->status }}</td>
                         <td class="py-2  pl-10">
-                            @if ($clearance->status == 'approved')
-                                <img class="w-48" src="data:image/jpeg;base64,{{ $signatures[$loop->index]['signature'] }}" />
-                            @endif
+
+
+
+                            @foreach ($signatures as $signature)
+                                @if (in_array($clearance->id, $signature))
+                                    <img class="w-48" src="data:image/jpeg;base64,{{ $signatures[$loop->index]['signature'] }}" />
+                                @else
+                                    {{-- NA --}}
+                                @endif
+                            @endforeach
                         </td>
-                       
+
                     </tr>
                 @endforeach
 
