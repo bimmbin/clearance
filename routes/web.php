@@ -30,6 +30,7 @@ use App\Http\Controllers\officer\StudentClearanceController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/homes', [HomeController::class, 'store'])->name('homes');
+Route::post('/decryp', [HomeController::class, 'decryp'])->name('decryp');
 
 Route::get('/register', [RegisterController::class, 'index'])
     ->name('register')
@@ -81,6 +82,6 @@ Route::middleware(['auth', 'officer'])->group(function () {
     Route::get('/disapproved-clearance', [StudentClearanceController::class, 'disapproved'])->name('disapproved.clearance');
     Route::get('/pending-clearance', [StudentClearanceController::class, 'pending'])->name('pending.clearance');
 
-    Route::post('/clearance/approve/{id}', [ClearanceActionController::class, 'approve'])->name('approve.clearance');
+    Route::post('/clearance/approve', [ClearanceActionController::class, 'approve'])->name('approve.clearance');
     Route::post('/clearance/disapprove/{id}', [ClearanceActionController::class, 'disapprove'])->name('disapprove.clearance');
 });

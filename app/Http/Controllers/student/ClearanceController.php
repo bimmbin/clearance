@@ -8,19 +8,39 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class ClearanceController extends Controller
 {
     public function index()
     {
-
+        $userId = Auth::user()->profiles->id;
+        // dd($userId);
         $clearances = Auth::user()->profiles->clearance;
         // $clearance = Clearance::has('profiles')->get();
         // return view('student.studentclearance');
-        
-        // dd($clearance);
+        $approvedClearances = Clearance::whereRelation('profiles', 'id', $userId)
+        ->where('status', 'approved')
+        ->get();
+
+        $decryptedImages = [];
+
+        foreach ($approvedClearances as $approvedClearance) {
+
+            // dd($approvedClearance->signature);
+            $decryp = Crypt::decrypt($approvedClearance->signature);
+            // dd($decryp);
+            $decryptedImages[] = [
+                'clearance_id' => $approvedClearance->id,
+                'signature' => base64_encode($decryp)
+            ];
+        }
+
+        // dd($decryptedImages);
+        // dd($approvedClearances);
         return view('student.studentclearance', [
-            'clearances' => $clearances
+            'clearances' => $clearances,
+            'signatures' => $decryptedImages,
         ]);
     }
     public function store()

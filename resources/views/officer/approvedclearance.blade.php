@@ -48,7 +48,7 @@
                 @foreach ($clearances as $clearance)
                     <tr
                         class="border text-sm md:text-base lg:text-lg font-regular bg-{{ $clearance->status == 'approved' ? 'green-300' : ($clearance->status == 'disapproved' ? 'red-300' : 'tablebg') }}">
-                        <td class="py-2  pl-10">{{ $loop->iteration }}</td>
+                        <td class="py-2  pl-10">{{ ($clearances->currentPage() - 1) * $clearances->perPage() + $loop->iteration }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->studentno }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->firstname }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->lastname }}</td>

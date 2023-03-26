@@ -6,6 +6,9 @@
 
 @section('content')
     @auth
-        Hello {{ Auth::user()->profiles->firstname." ".Auth::user()->profiles->lastname}}
+        Hello {{ Auth::user()->profiles->firstname . ' ' . Auth::user()->profiles->lastname }}
     @endauth
+
+
+        <img src="data:image/jpeg;base64,{{ $imageData }}" />
 @endsection

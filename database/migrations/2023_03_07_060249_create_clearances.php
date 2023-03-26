@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('department_id')->constrained()->cascadeOnDelete();
             $table->foreignId('profile_id')->constrained()->cascadeOnDelete();
+            $table->text('signature')->nullable();
             $table->text('status');
         });
     }

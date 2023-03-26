@@ -36,6 +36,7 @@
                     <th class="text-left pl-10">Department Name</th>
                     <th class="text-left pl-10">Assigned Officer</th>
                     <th class="text-left pl-10">Status</th>
+                    <th class="text-left pl-10">Signature</th>
                 </tr>
             </thead>
 
@@ -46,6 +47,11 @@
                         <td class="py-2  pl-10">{{ $clearance->department->name }}</td>
                         <td class="py-2  pl-10">{{ $clearance->department->profiles->firstname." ".$clearance->department->profiles->lastname }}</td>
                         <td class="py-2  pl-10">{{ $clearance->status }}</td>
+                        <td class="py-2  pl-10">
+                            @if ($clearance->status == 'approved')
+                                <img class="w-48" src="data:image/jpeg;base64,{{ $signatures[$loop->index]['signature'] }}" />
+                            @endif
+                        </td>
                        
                     </tr>
                 @endforeach

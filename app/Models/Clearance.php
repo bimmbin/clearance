@@ -12,7 +12,8 @@ class Clearance extends Model
     protected $fillable = [
         'department_id',
         'profile_id',
-        'status'
+        'signature',
+        'status',
     ];
 
     public function department() {
