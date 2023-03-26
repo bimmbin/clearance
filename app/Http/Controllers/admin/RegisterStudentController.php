@@ -6,7 +6,6 @@ use App\Models\Keys;
 use App\Models\User;
 use App\Models\Profiles;
 use Shuchkin\SimpleXLSX;
-use phpseclib3\Crypt\RSA;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -58,18 +57,6 @@ class RegisterStudentController extends Controller
 
             if (!$user->exists) {
                 $user->save();
-
-                // $rsa = new RSA();
-                $key_pair = RSA::createKey(2048);
-                $public = $key_pair->getPublicKey()->toString('pkcs1');
-                $private = $key_pair->toString('pkcs1');
-
-                Keys::create([
-                    'user_id' => $user->id,
-                    'public_key' => $public,
-                    'private_key' => $private,
-                ]);
-                // dd($private);
             }
 
             $userprofile = Profiles::firstOrNew(['user_id' => $user->id,], [
