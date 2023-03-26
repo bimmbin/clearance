@@ -34,44 +34,4 @@ class RegisterController extends Controller
 
         return redirect()->route('createstudent');
     }
-
-    public function registerOfficer(Request $request)
-    {
-
-        $this->validate($request, [
-            'employeeno' => 'required|min:8',
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'middlename' => 'required',
-        ]);
-        // dd($request->department);
-
-        $ran = microtime() . floor(rand() * 10000);
-
-        User::create([
-            'username' => $request->firstname . $request->employeeno,
-            'password' => Hash::make($request->employeeno),
-            'role' => 'officer',
-            'identify' => $ran,
-        ]);
-
-
-        $officer = [
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'middlename' => $request->middlename,
-            'employeeno' => $request->employeeno,
-            'username' => $request->lastname,
-            'sex' => $request->lastname,
-            'department_id' => $request->department,
-            'identify' => $ran,
-
-        ];
-
-        session(['officer' => $officer]);
-
-
-
-        return redirect()->route('storeOfficer');
-    }
 }

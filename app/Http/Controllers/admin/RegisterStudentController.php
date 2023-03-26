@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\Keys;
 use App\Models\User;
 use App\Models\Profiles;
 use Shuchkin\SimpleXLSX;
+use phpseclib3\Crypt\RSA;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +24,7 @@ class RegisterStudentController extends Controller
         $headings = 0;
         foreach ($students->rows() as $student) {
             if ($headings != 0 && $headings != 1) {
-                array_push($username, $student[2].$student[0]);
+                array_push($username, $student[2] . $student[0]);
             }
             $headings++;
         }
@@ -38,9 +40,9 @@ class RegisterStudentController extends Controller
 
 
         return view('admin.tablepreview')->with('students', $students)
-                                        ->with('exusers', $exusers);
+            ->with('exusers', $exusers);
     }
-    
+
     public function registerStudent(Request $request)
     {
 
@@ -52,10 +54,22 @@ class RegisterStudentController extends Controller
                 'password' => Hash::make($studentnumber),
                 'role' => 'student',
             ]);
-            
-            
+
+
             if (!$user->exists) {
                 $user->save();
+
+                // $rsa = new RSA();
+                $key_pair = RSA::createKey(2048);
+                $public = $key_pair->getPublicKey()->toString('pkcs1');
+                $private = $key_pair->toString('pkcs1');
+
+                Keys::create([
+                    'user_id' => $user->id,
+                    'public_key' => $public,
+                    'private_key' => $private,
+                ]);
+                // dd($private);
             }
 
             $userprofile = Profiles::firstOrNew(['user_id' => $user->id,], [
@@ -72,11 +86,8 @@ class RegisterStudentController extends Controller
             if (!$userprofile->exists) {
                 $userprofile->save();
             }
-            
         }
 
         return redirect()->route('createstudent');
     }
-
-    
 }
