@@ -223,13 +223,25 @@
 
                 <ul class="flex items-center max-md:hidden">
                     @auth
-                        <li>
-                            <a href="" class="p-3">{{ auth()->user()->username }}</a>
-                        </li>
+                        <li class="flex flex-col">
+                            @if (Auth::user()->role === 'officer')
+                                <p class="px-3 text-lg">Department: <span class="capitalize font-medium text-lg">{{ auth()->user()->profiles->department->name }}</span></p>
+                            @endif
+                            @if (Auth::user()->role === 'admin')
+                            <p class="px-3 text-lg">Role: <span class="capitalize font-medium text-lg">Admin</span></p>
+                        @endif
+                        @if (Auth::user()->role !== 'admin')
+                        <p class="px-3">Name: {{ auth()->user()->profiles->firstname . ' ' . auth()->user()->profiles->lastname}}</p>
+                        @else
+                        <p class="px-3">Name: {{ auth()->user()->username }}</p>
+                        
+                        @endif
+                        
+                            </li>
                         <li>
                             <form action="{{ route('logout') }}" method="post" class="p-3 inline">
                                 @csrf
-                                <button type="submit">Logout</button>
+                                <button type="submit" class="py-2 rounded-xl px-5 max-sm:w-11/12 placeholder:text-sm font-medium lg:py-3 bg-darkblue text-white hover:bg-sky-700">Logout</button>
                             </form>
                         </li>
                     @endauth
