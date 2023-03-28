@@ -28,8 +28,9 @@
 
     <div class="w-full pb-10 overflow-x-auto px-3 lg:px-10 xl:px-10">
 
-        <table id="dataTable" class="pl-5 table-auto text-center w-[1920px] text-lg xl:w-full"
-            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem); whitespace-nowrap">
+        <table id="dataTable"
+            class="pl-5 table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] whitespace-nowrap text-lg xl:w-full"
+            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">
             <thead>
                 <tr class="space-y-3 text-sm md:text-base lg:text-lg font-bold text-start">
                     <th class="text-left pl-10">No.</th>
@@ -46,8 +47,10 @@
 
             <tbody class="text-left">
                 @foreach ($clearances as $clearance)
-                    <tr class="border text-sm md:text-base lg:text-lg font-regular bg-{{ $clearance->status == 'approved' ? 'green-300' : ($clearance->status == 'disapproved' ? 'red-300' : 'tablebg') }}">
-                        <td class="py-2  pl-10">{{ ($clearances->currentPage() - 1) * $clearances->perPage() + $loop->iteration }}</td>
+                    <tr
+                        class="border text-sm md:text-base lg:text-lg font-regular bg-{{ $clearance->status == 'approved' ? 'green-300' : ($clearance->status == 'disapproved' ? 'red-300' : 'tablebg') }}">
+                        <td class="py-2  pl-10">
+                            {{ ($clearances->currentPage() - 1) * $clearances->perPage() + $loop->iteration }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->studentno }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->firstname }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->lastname }}</td>
@@ -56,58 +59,37 @@
                         <td class="py-2  pl-10">{{ $clearance->profiles->course }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->section }}</td>
                         <td class="py-2  pl-10 flex gap-2">
-                    
-                            <div class="relative whitespace-nowrap">
-                                <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
-                                    onclick="dropEdit{{ $loop->index }}()">
-                                    <img class="max-w-[29px] max-h-[29px]" src="img/icons/edit-icon.png" alt="">
 
-                                </div>
-                                <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
-                                    id="edit-{{ $loop->index }}">
-                                    <form action="" method="post" class="flex flex-col">
-                                        @csrf
-                                        <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Name</button>
-                                        <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Lastname</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="relative">
-                                <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
-                                    onclick="dropSetting{{ $loop->index }}()">
-                                    <img class="max-w-[29px] max-h-[29px]" src="img/icons/setting-icon.png" alt="">
-
-                                </div>
-                                <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
-                                    id="setting-{{ $loop->index }}">
-                                    <button class="py-3 px-5 hover:bg-btnhoverbg w-full" onclick="approve('{{ $clearance->id }}')">Approve</button>
-                                    <form action="{{ route('disapprove.clearance', $clearance->id) }}" method="post" class="flex flex-col">
-                                        @csrf
-                                        <button class="py-3 px-5 hover:bg-btnhoverbg">Disapprove</button>
-                                    </form>
-                                    
-                                </div>
-                               
-                            </div>
+                            <button class="bg-green-700 hover:bg-green-600 px-4 py-1 rounded-lg text-white"
+                                style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)"
+                                onclick="approve('{{ $clearance->id }}')">Approve</button>
+                            <form action="{{ route('disapprove.clearance', $clearance->id) }}" method="post"
+                                class="flex flex-col">
+                                @csrf
+                                <button class="bg-red-700 hover:bg-red-600 px-4 py-1 rounded-lg text-white"
+                                    style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)">Disapprove</button>
+                            </form>
                             
+
                             {{-- <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex justify-center items-center">
                                 
                                
                                 {
                             </div> --}}
-                          
+
                         </td>
                     </tr>
-                    
                 @endforeach
                 <div class="" id="passId"></div>
-                <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden" id="sig-pad">
+                <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
+                    id="sig-pad">
                     <form method="POST" action="{{ route('approve.clearance') }}">
                         @csrf
                         <canvas id="signature-pad" class="absolute z-50 bg-white"></canvas>
                         <input type="hidden" name="signature" id="signature">
                         <input type="hidden" name="clearanceId" id="clearanceId">
-                        <button type="submit" id="signatureBtn" class="absolute z-50 mt-60 bg-blue-500 hover:bg-blue-400 rounded-sm  text-white px-5 py-2">Submit</button>
+                        <button type="submit" id="signatureBtn"
+                            class="absolute z-50 mt-60 bg-blue-500 hover:bg-blue-400 rounded-sm  text-white px-5 py-2">Submit</button>
                     </form>
                     <div class="absolute bg-black opacity-50 w-[100vw] h-[100vh] z-20" id="bgBlack"></div>
 
@@ -122,39 +104,32 @@
 
 
 @section('script')
-
-
     function approve(id) {
-        {{-- alert(a); --}}
-        document.getElementById("sig-pad").classList.toggle("hidden");
-        const canvas = document.querySelector("canvas");
+    {{-- alert(a); --}}
+    document.getElementById("sig-pad").classList.toggle("hidden");
+    const canvas = document.querySelector("canvas");
 
-const signaturePad = new SignaturePad(canvas);
-canvas.width = 400;
-canvas.height = 200;
+    const signaturePad = new SignaturePad(canvas);
+    canvas.width = 400;
+    canvas.height = 200;
 
-const saveJPGButton = document.querySelector("#signatureBtn");
+    const saveJPGButton = document.querySelector("#signatureBtn");
 
-saveJPGButton.addEventListener("click", function (event) {
+    saveJPGButton.addEventListener("click", function (event) {
     if (signaturePad.isEmpty()) {
-      alert("Please provide a signature first.");
-      event.preventDefault();
+    alert("Please provide a signature first.");
+    event.preventDefault();
     } else {
-      var signatureData = signaturePad.toDataURL();
-        document.getElementById("signature").value = signatureData;
-        document.getElementById("clearanceId").value = id;
+    var signatureData = signaturePad.toDataURL();
+    document.getElementById("signature").value = signatureData;
+    document.getElementById("clearanceId").value = id;
     }
-  });
+    });
     }
 
     document.querySelector("#bgBlack").addEventListener("click", function (event) {
-        document.getElementById("sig-pad").classList.toggle("hidden");
-      });
-
-
-    
-
-
+    document.getElementById("sig-pad").classList.toggle("hidden");
+    });
 @endsection
 
 

@@ -7,13 +7,13 @@
 @section('content')
     @empty(!$student)
         <p>Student Account:</p>
-        <p>Username: {{ $student->profiles->lastname . $student->profiles->studentno }}</p>
+        <p>Username: {{ $student->username }}</p>
         <p>Password: {{ $student->profiles->studentno }}</p></br>
     @endempty
 
     @empty(!$officer)
         <p>Officer Account:</p>
-        <p>Username: {{ $officer->profiles->firstname . $officer->profiles->employeeno }}</p>
+        <p>Username: {{ $officer->username }}</p>
         <p>Password: {{ $officer->profiles->employeeno }}</p></br>
     @endempty
 

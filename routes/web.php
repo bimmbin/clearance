@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\admin\EditStudentController;
 use App\Http\Controllers\student\ClearanceController;
 use App\Http\Controllers\admin\CreateOfficerController;
 use App\Http\Controllers\admin\CreateStudentController;
@@ -54,6 +55,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/createstudent', [CreateStudentController::class, 'index'])->name('createstudent');
     Route::post('/previewTable', [RegisterStudentController::class, 'previewTable'])->name('previewTable');
     Route::post('/reg', [RegisterStudentController::class, 'registerStudent'])->name('registerStudent');
+    //student edit
+    Route::post('/editstudent', [EditStudentController::class, 'store'])->name('edit.student');
+
 
     //officer create
 

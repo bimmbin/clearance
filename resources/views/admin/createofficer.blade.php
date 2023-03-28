@@ -15,7 +15,7 @@
                 Department Officer Account</h1>
 
             <input
-                class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 mt-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px] @error('employeeno') border-red-500 @enderror"
+                class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 mt-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[350px] @error('employeeno') border-red-500 @enderror"
                 value="{{ old('employeeno') }}" type="text" placeholder="Employee Number" name="employeeno">
 
             @error('employeeno')
@@ -25,7 +25,7 @@
             @enderror
 
             <input
-                class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px] @error('firstname') border-red-500 @enderror"
+                class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[350px] @error('firstname') border-red-500 @enderror"
                 value="{{ old('firstname') }}" type="text" placeholder="First name" name="firstname">
 
             @error('firstname')
@@ -35,7 +35,7 @@
             @enderror
 
             <input
-                class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px] @error('lastname') border-red-500 @enderror"
+                class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[350px] @error('lastname') border-red-500 @enderror"
                 value="{{ old('lastname') }}" type="text" placeholder="Last name" name="lastname">
 
             @error('lastname')
@@ -45,7 +45,7 @@
             @enderror
 
             <input
-                class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px] @error('middlename') border-red-500 @enderror"
+                class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[350px] @error('middlename') border-red-500 @enderror"
                 value="{{ old('middlename') }}" type="text" placeholder="Middle name" name="middlename">
 
             @error('middlename')
@@ -56,16 +56,16 @@
             {{-- <input class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px]"
                 type="text" placeholder="Sex" name="sex"> --}}
 
-            <select class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px]">
+            <select class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[350px]">
 
-                <option class="bg-darkblue text-white" value="Male">Female</option>
+                <option class="bg-darkblue text-white" value="Male">Male</option>
                 <option class="bg-darkblue text-white" value="Female">Female</option>
 
             </select>
 
 
 
-            <select class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px]"
+            <select class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[350px]"
                 name="department" id="department" name="department">
 
                 @foreach ($departments as $department)
@@ -77,19 +77,19 @@
 
 
             <button
-                class="py-2 rounded-xl px-5 max-sm:w-11/12 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px] bg-darkblue text-white hover:bg-sky-700   @if ($departments->isEmpty()) !bg-gray-500 line-through !hover:bg-gray-500 @endif "
+                class="py-2 rounded-xl px-5 max-sm:w-11/12 placeholder:text-sm w-[400px] lg:py-3 lg:w-[350px] bg-darkblue text-white hover:bg-sky-700   @if ($departments->isEmpty()) !bg-gray-500 line-through !hover:bg-gray-500 @endif "
                 @if ($departments->isEmpty()) disabled @endif>Submit</button>
         </form>
 
         <div class="border h-[90%] my-auto max-xl:w-[90%] max-xl:h-0 max-xl:mx-auto max-xl:my-0"></div>
 
-        <div class="w-full pb-10 overflow-x-auto my-14 px-10 max-sm:px-5 max-sm:my-6">
+        <div class="w-full pb-10 overflow-x-auto overflow-y-hidden my-14 px-10 max-sm:px-5 max-sm:my-6">
             <h1 class="text-blacky text-left font-semibold mb-5"
                 style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">List of Department Officers</h1>
 
 
-            <table class="table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] text-lg xl:w-full "
-                style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">
+            <table class="whitespace-nowrap table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] text-lg xl:w-full "
+                style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem) ;">
                 <thead>
                     <tr class="space-y-3">
                         <th>Number</th>
@@ -121,27 +121,12 @@
                                             id="edit-{{ $loop->index }}">
                                             <form action="" method="post" class="flex flex-col">
                                                 @csrf
-                                                <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Name</button>
-                                                <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Lastname</button>
+                                                <button class="py-3 px-5 hover:bg-btnhoverbg">Edit Info</button>
+                                                
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="relative">
-                                        <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
-                                            onclick="dropSetting{{ $loop->index }}()">
-                                            <img class="max-w-[29px] max-h-[29px]" src="img/icons/setting-icon.png"
-                                                alt="">
-
-                                        </div>
-                                        <div class="absolute bg-btnbg  rounded-md top-7 right-0 z-10 hidden"
-                                            id="setting-{{ $loop->index }}">
-                                            <form action="" method="post" class="flex flex-col">
-                                                @csrf
-                                                <button class="py-3 px-5 hover:bg-btnhoverbg">Approve</button>
-                                                <button class="py-3 px-5 hover:bg-btnhoverbg">dispprove</button>
-                                            </form>
-                                        </div>
-                                    </div>
+                                    
 
                                 </td>
                             </tr>

@@ -15,6 +15,11 @@ class RegisterStudentController extends Controller
 
     public function previewTable(Request $request)
     {
+
+        $this->validate($request, [
+            'file' => 'required',
+        ]);
+
         $students = SimpleXLSX::parse($request->file);
 
 
@@ -47,9 +52,9 @@ class RegisterStudentController extends Controller
 
         foreach ($request->studentno as $i => $studentnumber) {
 
-            $ran = microtime() . floor(rand() * 10000);
-
-            $user = User::firstOrNew(['username' => $request->lastname[$i] . $studentnumber], [
+            $spacelessUsername = str_replace(' ', '', $request->firstname[$i]);
+            
+            $user = User::firstOrNew(['username' => $spacelessUsername . $studentnumber], [
                 'password' => Hash::make($studentnumber),
                 'role' => 'student',
             ]);

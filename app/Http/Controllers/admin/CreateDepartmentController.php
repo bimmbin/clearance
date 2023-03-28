@@ -12,7 +12,6 @@ class CreateDepartmentController extends Controller
     {
         $departments = Department::latest()->get();
 
-        
         // $user = User::get();
 
         // dd($user);

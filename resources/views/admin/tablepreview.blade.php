@@ -50,10 +50,10 @@
                                 <td class="pl-5">{{ $student[0] }} <input type="hidden" name="studentno[]"
                                         value="{{ $student[0] }}"></td>
 
-                                <td class="pl-5">{{ $student[1] }} <input type="hidden" name="firstname[]"
+                                <td class="pl-5">{{ $student[1] }} <input type="hidden" name="lastname[]"
                                         value="{{ $student[1] }}"></td>
 
-                                <td class="pl-5">{{ $student[2] }} <input type="hidden" name="lastname[]"
+                                <td class="pl-5">{{ $student[2] }} <input type="hidden" name="firstname[]"
                                         value="{{ $student[2] }}"></td>
 
                                 <td class="pl-5">{{ $student[3] }} <input type="hidden" name="middlename[]"

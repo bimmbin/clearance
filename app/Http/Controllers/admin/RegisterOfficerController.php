@@ -13,8 +13,8 @@ class RegisterOfficerController extends Controller
     public function store(Request $request)
     {
 
-
-        $user = User::firstOrNew(['username' => $request->firstname . $request->employeeno], [
+        $spacelessUsername = str_replace(' ', '', $request->firstname);
+        $user = User::firstOrNew(['username' => $spacelessUsername . $request->employeeno], [
             'password' => Hash::make($request->employeeno),
             'role' => 'officer',
         ]);
