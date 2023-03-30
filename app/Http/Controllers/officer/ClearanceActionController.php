@@ -27,7 +27,7 @@ class ClearanceActionController extends Controller
 
         $clearance->save();
 
-        return redirect()->route('pending.clearance');
+        return redirect()->route('pending.view');
     }
 
     public function disapprove($id) {
@@ -38,6 +38,6 @@ class ClearanceActionController extends Controller
 
         $clearance->save();
 
-        return redirect()->route('disapprove.clearance');
+        return redirect()->route('disapproved.view');
     }
 }

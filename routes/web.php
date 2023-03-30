@@ -86,9 +86,9 @@ Route::middleware(['auth', 'student'])->group(function () {
 
 // officer
 Route::middleware(['auth', 'officer'])->group(function () {
-    Route::get('/approved-clearance', [StudentClearanceController::class, 'approved'])->name('approved.clearance');
-    Route::get('/disapproved-clearance', [StudentClearanceController::class, 'disapproved'])->name('disapproved.clearance');
-    Route::get('/pending-clearance', [StudentClearanceController::class, 'pending'])->name('pending.clearance');
+    Route::get('/approved-clearance', [StudentClearanceController::class, 'approved'])->name('approved.view');
+    Route::get('/disapproved-clearance', [StudentClearanceController::class, 'disapproved'])->name('disapproved.view');
+    Route::get('/pending-clearance', [StudentClearanceController::class, 'pending'])->name('pending.view');
 
     Route::post('/clearance/approve', [ClearanceActionController::class, 'approve'])->name('approve.clearance');
     Route::post('/clearance/disapprove/{id}', [ClearanceActionController::class, 'disapprove'])->name('disapprove.clearance');
