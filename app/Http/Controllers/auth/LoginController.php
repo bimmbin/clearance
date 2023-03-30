@@ -41,9 +41,9 @@ class LoginController extends Controller
         if ($user->role === 'admin') {
             return redirect()->route('createstudent');
         } elseif ($user->role === 'officer') {
-            return redirect()->route('pending.clearance');
+            return redirect()->route('pending.view');
         } elseif ($user->role === 'student') {
-            return redirect()->route('student.clearance', ['yr' => '2023-2024']);
+            return redirect()->route('student.clearance');
         }
 
 

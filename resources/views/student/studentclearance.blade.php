@@ -6,10 +6,11 @@
 
 @section('content')
     <div class="flex flex-col pt-10 pb-5 px-5 gap-4 md:px-10 xl:flex-row xl:justify-between">
-
-        <h1 class="text-blacky font-semibold" style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">Student
-            Clearance</h1>
-
+        <div class="flex flex-col">
+            <h1 class="text-blacky font-semibold" style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">Student
+                Clearance</h1>
+            <h1 class="text-blacky" style="font-size: clamp(0.9375rem, 0.8942rem + 0.1923vw, 1.125rem);">Year: {{ $yr }}</h1>
+        </div>
         <div class="relative">
             <input type="text" id="searchInput"
                 class="border-2 text-gray-700 rounded-xl py-2 pl-5 pr-4 focus:outline-none focus:shadow-outline w-full xl:w-[500px]"
@@ -57,7 +58,8 @@
 
                             @foreach ($signatures as $signature)
                                 @if (in_array($clearance->id, $signature))
-                                    <img class="w-48" src="data:image/jpeg;base64,{{ $signatures[$loop->index]['signature'] }}" />
+                                    <img class="w-48"
+                                        src="data:image/jpeg;base64,{{ $signatures[$loop->index]['signature'] }}" />
                                 @else
                                     {{-- NA --}}
                                 @endif

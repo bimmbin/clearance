@@ -80,7 +80,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 // student
 Route::middleware(['auth', 'student'])->group(function () {
-    Route::get('/clearance/{yr}', [ClearanceController::class, 'index'])->name('student.clearance');
+    Route::get('/clearance', [ClearanceController::class, 'index'])->name('student.clearance');
 });
 
 

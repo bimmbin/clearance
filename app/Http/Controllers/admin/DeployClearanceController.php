@@ -12,7 +12,7 @@ class DeployClearanceController extends Controller
 {
     public function store(Request $request) {
 
-    
+        // dd($request->id)
         $users = Profiles::whereRelation('user', 'role', 'student')->get();
 
         $departments = Department::all();
@@ -22,8 +22,12 @@ class DeployClearanceController extends Controller
 
       
             foreach ($departments as $department) {
-                $clearance = Clearance::firstOrNew(['department_id' => $department->id,'profile_id' => $user->id,], [
+                $clearance = Clearance::firstOrNew([
+                    'department_id' => $department->id,
+                    'profile_id' => $user->id,
                     'school_year_id' => $request->id,
+                ], [
+                    
                     'status' => 'pending',
                 ]);
         

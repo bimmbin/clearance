@@ -5,6 +5,7 @@ namespace App\Http\Controllers\student;
 use App\Models\Profiles;
 use App\Models\Clearance;
 use App\Models\Department;
+use App\Models\SchoolYear;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -12,20 +13,21 @@ use Illuminate\Support\Facades\Crypt;
 
 class ClearanceController extends Controller
 {
-    public function index($yr)
+    public function index()
     {
         // clearance
         // $clearances = Auth::user()->profiles->clearance;
-
+        $skulyear = SchoolYear::has('currentyear')->first();
+        $schoolyear = $skulyear->year;
         //signature
         $userId = Auth::user()->profiles->id;
 
         $allClearances = Clearance::whereRelation('profiles', 'id', $userId)
-        ->whereRelation('schoolyear', 'year', $yr)
+        ->whereRelation('schoolyear', 'year', $schoolyear)
         ->get();
 
         $approvedClearances = Clearance::whereRelation('profiles', 'id', $userId)
-        ->whereRelation('schoolyear', 'year', $yr)
+        ->whereRelation('schoolyear', 'year', $schoolyear)
         ->where('status', 'approved')
         ->get();
 
@@ -46,7 +48,7 @@ class ClearanceController extends Controller
         return view('student.studentclearance', [
             'clearances' => $allClearances,
             'signatures' => $decryptedImages,
-            'yr' => $yr,
+            'yr' => $schoolyear,
         ]);
     }
     public function store()

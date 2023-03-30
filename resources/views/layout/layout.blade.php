@@ -13,8 +13,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    
-        <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -156,18 +156,18 @@
                         <li
                             class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                            <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
+                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
                             <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('admin.officerview') }}">Officer</a>
-                                
+                                href="{{ route('createdepartment') }}">Department</a>
                         </li>
 
                         <li
                             class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                            <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
                             <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('createdepartment') }}">Department</a>
+                                href="{{ route('admin.officerview') }}">Officer</a>
+
                         </li>
 
                         <li
@@ -186,7 +186,7 @@
 
                             <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
                             <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('student.clearance', ['yr' => $yr]) }}">Clearance</a>
+                                href="{{ route('student.clearance') }}">Clearance</a>
                         </li>
                     @endif
 
@@ -214,7 +214,7 @@
                         </li>
                     @endif
 
-              
+
                 </ul>
 
             </div>
@@ -224,7 +224,8 @@
         <div class="w-screen h-screen overflow-y-scroll scrollbar-y-hidden">
 
             <!-- header -->
-            <header class="flex w-[100%] bg-white items-center justify-between max-sm:py-[15px] max-sm:px-[25px] py-[20px] px-[50px]">
+            <header
+                class="flex w-[100%] bg-white items-center justify-between max-sm:py-[15px] max-sm:px-[25px] py-[20px] px-[50px]">
 
                 <a href="{{ route('home') }}"><img class="w-[150px] max-2xl:w-[120px]" src="img/icons/CHCC logo.png"
                         alt=""></a>
@@ -233,23 +234,27 @@
                     @auth
                         <li class="flex flex-col">
                             @if (Auth::user()->role === 'officer')
-                                <p class="px-3 text-lg">Department: <span class="capitalize font-medium text-lg">{{ auth()->user()->profiles->department->name }}</span></p>
+                                <p class="px-3 text-lg">Department: <span
+                                        class="capitalize font-medium text-lg">{{ auth()->user()->profiles->department->name }}</span>
+                                </p>
                             @endif
                             @if (Auth::user()->role === 'admin')
-                            <p class="px-3 text-lg">Role: <span class="capitalize font-medium text-lg">Admin</span></p>
-                        @endif
-                        @if (Auth::user()->role !== 'admin')
-                        <p class="px-3">Name: {{ auth()->user()->profiles->firstname . ' ' . auth()->user()->profiles->lastname}}</p>
-                        @else
-                        <p class="px-3">Name: {{ auth()->user()->username }}</p>
-                        
-                        @endif
-                        
-                            </li>
+                                <p class="px-3 text-lg">Role: <span class="capitalize font-medium text-lg">Admin</span></p>
+                            @endif
+                            @if (Auth::user()->role !== 'admin')
+                                <p class="px-3">Name:
+                                    {{ auth()->user()->profiles->firstname . ' ' . auth()->user()->profiles->lastname }}
+                                </p>
+                            @else
+                                <p class="px-3">Name: {{ auth()->user()->username }}</p>
+                            @endif
+
+                        </li>
                         <li>
                             <form action="{{ route('logout') }}" method="post" class="p-3 inline">
                                 @csrf
-                                <button type="submit" class="py-2 rounded-xl px-5 max-sm:w-11/12 placeholder:text-sm font-medium lg:py-3 bg-darkblue text-white hover:bg-sky-700">Logout</button>
+                                <button type="submit"
+                                    class="py-2 rounded-xl px-5 max-sm:w-11/12 placeholder:text-sm font-medium lg:py-3 bg-darkblue text-white hover:bg-sky-700">Logout</button>
                             </form>
                         </li>
                     @endauth
@@ -296,21 +301,32 @@
                                     <li
                                         class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                                        <img class="w-[20px] h-[20px]" src="img/icons/School Director.png"
-                                            alt="">
+                                        <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
                                         <a class=""
                                             style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                            href="{{ route('admin.officerview') }}">Officer</a>
-                                        
+                                            href="{{ route('createdepartment') }}">Department</a>
                                     </li>
 
                                     <li
                                         class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                                        <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                        <img class="w-[20px] h-[20px]" src="img/icons/School Director.png"
+                                            alt="">
                                         <a class=""
                                             style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                            href="{{ route('createdepartment') }}">Department</a>
+                                            href="{{ route('admin.officerview') }}">Officer</a>
+
+                                    </li>
+
+                                    <li
+                                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                                        <img class="w-[20px] h-[20px]" src="img/icons/School Director.png"
+                                            alt="">
+                                        <a class=""
+                                            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                            href="{{ route('admin.deployment') }}">Deployment</a>
+
                                     </li>
                                 @endif
 
@@ -322,7 +338,7 @@
                                         <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
                                         <a class=""
                                             style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                            href="{{ route('student.clearance', ['yr' => $yr]) }}">Clearance</a>
+                                            href="{{ route('student.clearance') }}">Clearance</a>
                                     </li>
                                 @endif
 

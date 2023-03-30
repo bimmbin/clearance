@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Shuchkin\SimpleXLSX;
 use App\Models\SchoolYear;
+use App\Models\CurrentYear;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -40,6 +41,12 @@ class RegisterController extends Controller
             if (!$skulyear->exists) {
                 $skulyear->save();
             }
+        }
+
+        $currYear = CurrentYear::firstOrNew(['school_year_id' => '1']);
+    
+        if (!$currYear->exists) {
+            $currYear->save();
         }
 
         auth()->attempt($request->only('username', 'password'));

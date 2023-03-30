@@ -15,7 +15,7 @@ class ViewClearanceController extends Controller
         // $clearances = Clearance::paginate(10);
 
         $profiles = Profiles::whereRelation('user', 'role', 'student')
-            ->whereDoesntHave('clearance')
+            // ->whereDoesntHave('clearance')
             ->latest()
             ->get();
 
@@ -25,7 +25,7 @@ class ViewClearanceController extends Controller
         $studentcount = [];
         foreach ($schoolyears as $schoolyear) {
             $studentsCount = Clearance::where('school_year_id', '=', $schoolyear->id)
-            ->where('department_id', '=', '1')
+            ->where('department_id', '=', '1') //need this to prevent multiplying students per department
             ->select('year')
             ->count();
 

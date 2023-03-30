@@ -5,6 +5,7 @@ namespace App\Http\Controllers\officer;
 use App\Models\Clearance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\SchoolYear;
 use Illuminate\Support\Facades\Auth;
 
 class StudentClearanceController extends Controller
@@ -13,12 +14,23 @@ class StudentClearanceController extends Controller
     {
         $deptId = Auth::user()->profiles->department->id;
 
-        $clearances = Clearance::whereRelation('department', 'id', $deptId)
-            ->where('status', 'approved')
+        $schoolyear = SchoolYear::has('currentyear')->first();
+
+            //select all clearance where depatment user id and schooyear 
+            $clearances = Clearance::whereHas('department', function ($query) use ($deptId) {
+
+                $query->where('id', $deptId);
+    
+            })->whereHas('schoolyear', function ($query) use ($schoolyear) {
+    
+                $query->where('year', $schoolyear->year);
+    
+            })->where('status', 'approved')
             ->orderBy('updated_at', 'desc')
             ->paginate(10);
 
-        // dd($deptId);
+
+        // dd($clearances);
         return view('officer.approvedclearance', [
             'clearances' => $clearances
         ]);
@@ -27,10 +39,21 @@ class StudentClearanceController extends Controller
     {
         $deptId = Auth::user()->profiles->department->id;
 
-        $clearances = Clearance::whereRelation('department', 'id', $deptId)
-            ->where('status', 'disapproved')
+        $schoolyear = SchoolYear::has('currentyear')->first();
+
+            //select all clearance where depatment user id and schooyear 
+            $clearances = Clearance::whereHas('department', function ($query) use ($deptId) {
+
+                $query->where('id', $deptId);
+    
+            })->whereHas('schoolyear', function ($query) use ($schoolyear) {
+    
+                $query->where('year', $schoolyear->year);
+    
+            })->where('status', 'disapproved')
             ->orderBy('updated_at', 'desc')
             ->paginate(10);
+
 
         // dd($clearances);
         return view('officer.disapprovedclearance', [
@@ -41,9 +64,21 @@ class StudentClearanceController extends Controller
     {
         $deptId = Auth::user()->profiles->department->id;
 
-        $clearances = Clearance::whereRelation('department', 'id', $deptId)
-            ->where('status', 'pending')
+        $schoolyear = SchoolYear::has('currentyear')->first();
+
+            //select all clearance where depatment user id and schooyear 
+            $clearances = Clearance::whereHas('department', function ($query) use ($deptId) {
+
+                $query->where('id', $deptId);
+    
+            })->whereHas('schoolyear', function ($query) use ($schoolyear) {
+    
+                $query->where('year', $schoolyear->year);
+    
+            })->where('status', 'pending')
+            ->orderBy('updated_at', 'desc')
             ->paginate(10);
+
 
         // dd($clearances);
         return view('officer.pendingclearance', [

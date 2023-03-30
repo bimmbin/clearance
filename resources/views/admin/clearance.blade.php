@@ -10,9 +10,9 @@
                 Deploy student clearances</h1>
             <h1 class="text-green-600 " style="font-size: clamp(1.0625rem, 0.9471rem + 0.5128vw, 1.5625rem);">
                 @if (count($profiles) == 0)
-                    All clearances are deployed
+                    No student account. Need to create first
                 @else
-                    There are {{ count($profiles) }} student clearance ready to be deployed
+                    There are {{ count($profiles) }} total student
                 @endif
 
 
