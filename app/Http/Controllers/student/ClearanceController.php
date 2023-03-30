@@ -12,14 +12,20 @@ use Illuminate\Support\Facades\Crypt;
 
 class ClearanceController extends Controller
 {
-    public function index()
+    public function index($yr)
     {
+        // clearance
+        // $clearances = Auth::user()->profiles->clearance;
+
+        //signature
         $userId = Auth::user()->profiles->id;
-        // dd($userId);
-        $clearances = Auth::user()->profiles->clearance;
-        // $clearance = Clearance::has('profiles')->get();
-        // return view('student.studentclearance');
+
+        $allClearances = Clearance::whereRelation('profiles', 'id', $userId)
+        ->whereRelation('schoolyear', 'year', $yr)
+        ->get();
+
         $approvedClearances = Clearance::whereRelation('profiles', 'id', $userId)
+        ->whereRelation('schoolyear', 'year', $yr)
         ->where('status', 'approved')
         ->get();
 
@@ -36,11 +42,11 @@ class ClearanceController extends Controller
             ];
         }
 
-        // dd($decryptedImages);
-        // dd($approvedClearances);
+
         return view('student.studentclearance', [
-            'clearances' => $clearances,
+            'clearances' => $allClearances,
             'signatures' => $decryptedImages,
+            'yr' => $yr,
         ]);
     }
     public function store()

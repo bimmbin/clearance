@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clearances', function (Blueprint $table) {
+        Schema::create('school_years', function (Blueprint $table) {
             $table->id();
+            $table->text('year');
             $table->timestamps();
-            $table->foreignId('department_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('profile_id')->constrained()->cascadeOnDelete();
-            $table->text('signature')->nullable();
-            $table->text('school_year_id');
-            $table->text('status');
         });
     }
 
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clearances');
+        Schema::dropIfExists('school_years');
     }
 };

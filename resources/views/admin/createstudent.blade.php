@@ -232,4 +232,8 @@
     document.getElementById("i").value = i;
 
     };
+    document.querySelector("#bgBlack").addEventListener("click", function () {
+
+        document.getElementById("editDiaglogBox").classList.toggle("hidden");
+        });
 @endsection

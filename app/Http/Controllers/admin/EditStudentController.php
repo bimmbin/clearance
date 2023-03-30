@@ -11,8 +11,6 @@ class EditStudentController extends Controller
     public function store(Request $request)
     {
 
-        // dd();
-
         $student = Profiles::findOrFail($request->id);
 
         $student->studentno = $request->studentno;

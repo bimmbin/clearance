@@ -43,7 +43,7 @@ class LoginController extends Controller
         } elseif ($user->role === 'officer') {
             return redirect()->route('pending.clearance');
         } elseif ($user->role === 'student') {
-            return redirect()->route('student.clearance');
+            return redirect()->route('student.clearance', ['yr' => '2023-2024']);
         }
 
 

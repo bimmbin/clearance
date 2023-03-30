@@ -13,6 +13,7 @@ class Clearance extends Model
         'department_id',
         'profile_id',
         'signature',
+        'school_year_id',
         'status',
     ];
 
@@ -22,4 +23,8 @@ class Clearance extends Model
     public function profiles() {
         return $this->belongsTo(Profiles::class, 'profile_id');
     }
+    public function schoolyear() {
+        return $this->belongsTo(SchoolYear::class, 'school_year_id');
+    }
+
 }

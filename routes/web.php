@@ -10,6 +10,8 @@ use App\Http\Controllers\admin\EditStudentController;
 use App\Http\Controllers\student\ClearanceController;
 use App\Http\Controllers\admin\CreateOfficerController;
 use App\Http\Controllers\admin\CreateStudentController;
+use App\Http\Controllers\admin\ViewClearanceController;
+use App\Http\Controllers\admin\DeployClearanceController;
 use App\Http\Controllers\admin\RegisterOfficerController;
 use App\Http\Controllers\admin\RegisterStudentController;
 use App\Http\Controllers\admin\CreateDepartmentController;
@@ -69,14 +71,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/create/department', [CreateDepartmentController::class, 'store'])->name('store.department');
 
     //clearance create
-    Route::get('/create/clearance', [ClearanceController::class, 'store'])->name('store.clearance');
+    Route::get('/deployment', [ViewClearanceController::class, 'index'])->name('admin.deployment');
+    Route::post('/create/clearance', [DeployClearanceController::class, 'store'])->name('store.clearance');
 });
 
 
 
 // student
 Route::middleware(['auth', 'student'])->group(function () {
-    Route::get('/clearance', [ClearanceController::class, 'index'])->name('student.clearance');
+    Route::get('/clearance/{yr}', [ClearanceController::class, 'index'])->name('student.clearance');
 });
 
 

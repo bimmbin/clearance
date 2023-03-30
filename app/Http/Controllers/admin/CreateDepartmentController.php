@@ -32,8 +32,8 @@ class CreateDepartmentController extends Controller
             'name' => $request->name,
         ]);
 
-
-        return redirect()->route('store.clearance');
+        return back();
+        // return redirect()->route('store.clearance');
 
     }
 }
