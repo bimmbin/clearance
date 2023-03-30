@@ -1,14 +1,14 @@
 @extends('layout.layout')
 @section('docTitle')
-    Student Clearance
+    Search Clearance
 @endsection
 
 
 @section('content')
     <div class="flex flex-col pt-10 pb-5 px-5 gap-4 md:px-10 xl:flex-row xl:justify-between">
 
-        <h1 class="text-blacky font-semibold" style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">Student
-            Clearance</h1>
+        <h1 class="text-blacky font-semibold" style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">Search
+            Result</h1>
 
         <form action="{{ route('search.clearance') }}" method="post" class="relative">
             @csrf
@@ -25,7 +25,6 @@
 
     </div>
 
-    <!-- table here -->
 
     <div class="w-full pb-10 overflow-x-auto px-3 lg:px-10 xl:px-10">
 
@@ -59,11 +58,37 @@
                         <td class="py-2  pl-10">{{ $clearance->profiles->year }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->course }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->section }}</td>
-                        <td class="py-2  pl-10 flex gap-2  bg-white">
+                        <td class="py-2  pl-10 flex gap-2">
 
-                            <button class="bg-green-700 hover:bg-green-600 px-4 py-1 rounded-lg text-white"
-                                style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)"
-                                onclick="approve('{{ $clearance->id }}')">Approve</button>
+                            @if ($clearance->status == 'approved')
+                                <form action="{{ route('disapprove.clearance', $clearance->id) }}" method="post"
+                                    class="flex flex-col">
+                                    @csrf
+                                    <button class="bg-red-700 hover:bg-red-600 px-4 py-1 rounded-lg text-white"
+                                        style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)">Disapprove</button>
+                                </form>
+                            @elseif ($clearance->status == 'disapproved')
+                                <button class="bg-green-700 hover:bg-green-600 px-4 py-1 rounded-lg text-white"
+                                    style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)"
+                                    onclick="approve('{{ $clearance->id }}')">Approve</button>
+                            @elseif ($clearance->status == 'pending')
+                                <button class="bg-green-700 hover:bg-green-600 px-4 py-1 rounded-lg text-white"
+                                    style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)"
+                                    onclick="approve('{{ $clearance->id }}')">Approve</button>
+                                <form action="{{ route('disapprove.clearance', $clearance->id) }}" method="post"
+                                    class="flex flex-col">
+                                    @csrf
+                                    <button class="bg-red-700 hover:bg-red-600 px-4 py-1 rounded-lg text-white"
+                                        style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)">Disapprove</button>
+                                </form>
+                            @endif
+
+
+                            {{-- <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex justify-center items-center">
+                            
+                           
+                            {
+                        </div> --}}
 
                         </td>
                     </tr>
@@ -87,6 +112,8 @@
         {{ $clearances->links() }}
     </div>
 @endsection
+
+
 
 
 @section('script')

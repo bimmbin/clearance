@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\RegisterOfficerController;
 use App\Http\Controllers\admin\RegisterStudentController;
 use App\Http\Controllers\admin\CreateDepartmentController;
 use App\Http\Controllers\officer\ClearanceActionController;
+use App\Http\Controllers\officer\SearchClearanceController;
 use App\Http\Controllers\officer\StudentClearanceController;
 
 /*
@@ -91,4 +92,8 @@ Route::middleware(['auth', 'officer'])->group(function () {
 
     Route::post('/clearance/approve', [ClearanceActionController::class, 'approve'])->name('approve.clearance');
     Route::post('/clearance/disapprove/{id}', [ClearanceActionController::class, 'disapprove'])->name('disapprove.clearance');
+
+    //search
+    Route::post('/search', [SearchClearanceController::class, 'store'])->name('search.clearance');
+    Route::get('/clearance/search', [SearchClearanceController::class, 'index'])->name('search.result');
 });

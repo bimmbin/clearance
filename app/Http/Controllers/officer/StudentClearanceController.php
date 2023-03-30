@@ -18,7 +18,7 @@ class StudentClearanceController extends Controller
             ->orderBy('updated_at', 'desc')
             ->paginate(10);
 
-        // dd($clearances);
+        // dd($deptId);
         return view('officer.approvedclearance', [
             'clearances' => $clearances
         ]);

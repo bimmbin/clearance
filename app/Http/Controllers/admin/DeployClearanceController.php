@@ -20,7 +20,7 @@ class DeployClearanceController extends Controller
 
         foreach ($users as $user) {
 
-            // dd($user->id);
+      
             foreach ($departments as $department) {
                 $clearance = Clearance::firstOrNew(['department_id' => $department->id,'profile_id' => $user->id,], [
                     'school_year_id' => $request->id,

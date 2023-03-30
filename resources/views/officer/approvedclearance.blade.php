@@ -10,8 +10,9 @@
         <h1 class="text-blacky font-semibold" style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">Student
             Clearance</h1>
 
-        <div class="relative">
-            <input type="text" id="searchInput"
+        <form action="{{ route('search.clearance') }}" method="post" class="relative">
+            @csrf
+            <input type="text" name="search"
                 class="border-2 text-gray-700 rounded-xl py-2 pl-5 pr-4 focus:outline-none focus:shadow-outline w-full xl:w-[500px]"
                 placeholder="Search...">
             <button class="absolute right-0 top-0 mt-3 mr-4">
@@ -20,7 +21,7 @@
                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
             </button>
-        </div>
+        </form>
 
     </div>
 
@@ -28,13 +29,14 @@
 
     <div class="w-full h-fit pb-28 overflow-x-auto px-3 lg:px-10 xl:px-10 overflow-y-hidden">
 
-        <table id="dataTable" class="pl-5 table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] whitespace-nowrap text-lg xl:w-full"
+        <table id="dataTable"
+            class="pl-5 table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] whitespace-nowrap text-lg xl:w-full"
             style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem); whitespace-nowrap">
             <thead>
                 <tr class="space-y-3 text-sm md:text-base lg:text-lg font-bold text-start">
                     <th class="text-left pl-10">No.</th>
                     <th class="text-left pl-10">Student No.</th>
-                    <th class="text-left pl-10">First Namer</th>
+                    <th class="text-left pl-10">First Name</th>
                     <th class="text-left pl-10">Last Name</th>
                     <th class="text-left pl-10">Middle Name</th>
                     <th class="text-left pl-10">Year</th>
@@ -48,7 +50,8 @@
                 @foreach ($clearances as $clearance)
                     <tr
                         class="border text-sm md:text-base lg:text-lg font-regular bg-{{ $clearance->status == 'approved' ? 'green-300' : ($clearance->status == 'disapproved' ? 'red-300' : 'tablebg') }}">
-                        <td class="py-2  pl-10">{{ ($clearances->currentPage() - 1) * $clearances->perPage() + $loop->iteration }}</td>
+                        <td class="py-2  pl-10">
+                            {{ ($clearances->currentPage() - 1) * $clearances->perPage() + $loop->iteration }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->studentno }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->firstname }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->lastname }}</td>
@@ -57,15 +60,15 @@
                         <td class="py-2  pl-10">{{ $clearance->profiles->course }}</td>
                         <td class="py-2  pl-10">{{ $clearance->profiles->section }}</td>
                         <td class="py-2  pl-10 flex gap-2  bg-white">
-                    
+
                             <form action="{{ route('disapprove.clearance', $clearance->id) }}" method="post"
                                 class="flex flex-col">
                                 @csrf
                                 <button class="bg-red-700 hover:bg-red-600 px-4 py-1 rounded-lg text-white"
                                     style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)">Disapprove</button>
                             </form>
-                           
-                          
+
+
                         </td>
                     </tr>
                 @endforeach
@@ -78,5 +81,4 @@
 
 
 @section('script')
-    
 @endsection

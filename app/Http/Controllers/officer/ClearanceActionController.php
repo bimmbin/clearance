@@ -11,7 +11,7 @@ class ClearanceActionController extends Controller
 {
     public function approve(Request $request) {
 
-        
+        // dd($request->clearanceId);
          $signatureData1 = explode(",", $request->signature)[1];
         // $signatureData1 = str_replace('data:image/png;base64,', '', $signatureData);
         $signatureData2 = str_replace(' ', '+', $signatureData1);
@@ -27,7 +27,7 @@ class ClearanceActionController extends Controller
 
         $clearance->save();
 
-        return back();
+        return redirect()->route('pending.clearance');
     }
 
     public function disapprove($id) {
@@ -38,6 +38,6 @@ class ClearanceActionController extends Controller
 
         $clearance->save();
 
-        return back();
+        return redirect()->route('disapprove.clearance');
     }
 }
