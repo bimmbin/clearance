@@ -61,17 +61,34 @@
                         <td class="py-2  pl-10">{{ $clearance->profiles->section }}</td>
                         <td class="py-2  pl-10 flex gap-2  bg-white">
 
-                            <form action="{{ route('disapprove.clearance', $clearance->id) }}" method="post"
-                                class="flex flex-col">
-                                @csrf
-                                <button class="bg-red-700 hover:bg-red-600 px-4 py-1 rounded-lg text-white"
-                                    style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)">Disapprove</button>
-                            </form>
+                            <button class="bg-red-700 hover:bg-red-600 px-4 py-1 rounded-lg text-white"
+                                style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem)" onclick="disapprove('{{ $clearance->id }}')">Disapprove</button>
 
 
                         </td>
                     </tr>
                 @endforeach
+
+                <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
+                    id="editDiaglogBox2">
+                    <div class="absolute z-50 bg-white py-5 px-5 rounded-lg">
+                        <form method="POST" action="{{ route('disapprove.clearance') }}"
+                            class="flex flex-col justify-center items-center gap-2">
+                            @csrf
+
+                            <h1 class="text-center" style="font-size: clamp(1.0625rem, 0.9471rem + 0.5128vw, 1.5625rem);">Remarks of disapproval</h1>
+      
+                            <textarea name="remarks" id="" cols="50" rows="5" class="w-full border border-gray-300 py-2 px-3 text-lg rounded-md" style="font-size: clamp(0.9375rem, 0.8942rem + 0.1923vw, 1.125rem);"></textarea>
+                            <input type="hidden" name="id" id="disId">
+                            
+                            <button type="submit"
+                                class=" w-full bg-blue-500 hover:bg-blue-400 py-2 px-3 text-lg rounded-md text-white">Submit</button>
+
+                        </form>
+                    </div>
+                    <div class="absolute bg-black opacity-60 w-[100vw] h-[100vh] z-20" id="bgBlack2"></div>
+
+                </div>
             </tbody>
         </table>
         {{ $clearances->links() }}
@@ -81,4 +98,12 @@
 
 
 @section('script')
+
+function disapprove(id) {
+    document.getElementById("editDiaglogBox2").classList.toggle("hidden");
+    document.getElementById("disId").value = id;
+}
+document.querySelector("#bgBlack2").addEventListener("click", function () {
+    document.getElementById("editDiaglogBox2").classList.add("hidden");
+});
 @endsection

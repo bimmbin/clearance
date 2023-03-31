@@ -91,7 +91,7 @@ Route::middleware(['auth', 'officer'])->group(function () {
     Route::get('/pending-clearance', [StudentClearanceController::class, 'pending'])->name('pending.view');
 
     Route::post('/clearance/approve', [ClearanceActionController::class, 'approve'])->name('approve.clearance');
-    Route::post('/clearance/disapprove/{id}', [ClearanceActionController::class, 'disapprove'])->name('disapprove.clearance');
+    Route::post('/clearance/disapprove', [ClearanceActionController::class, 'disapprove'])->name('disapprove.clearance');
 
     //search
     Route::post('/search', [SearchClearanceController::class, 'store'])->name('search.clearance');

@@ -39,6 +39,7 @@
                     <th class="text-left pl-10">Assigned Officer</th>
                     <th class="text-left pl-10">Status</th>
                     <th class="text-left pl-10">Signature</th>
+                    <th class="text-left pl-10">Remarks</th>
                 </tr>
             </thead>
 
@@ -65,6 +66,7 @@
                                 @endif
                             @endforeach
                         </td>
+                        <td class="py-2  pl-10">{{ $clearance->remarks }}</td>
 
                     </tr>
                 @endforeach

@@ -14,6 +14,7 @@ class Clearance extends Model
         'profile_id',
         'signature',
         'school_year_id',
+        'remarks',
         'status',
     ];
 

@@ -24,20 +24,21 @@ class ClearanceActionController extends Controller
 
         $clearance->status = 'approved';
         $clearance->signature = $encryptedImage;
-
+        $clearance->remarks = '';
         $clearance->save();
 
         return redirect()->route('pending.view');
     }
 
-    public function disapprove($id) {
-        $clearance = Clearance::findOrFail($id);
+    public function disapprove(Request $request) {
+        $clearance = Clearance::findOrFail($request->id);
 
         $clearance->status = 'disapproved';
+        // $clearance->signature = '';
         $clearance->signature = '';
-
+        $clearance->remarks = $request->remarks;
         $clearance->save();
 
-        return redirect()->route('disapproved.view');
+        return redirect()->route('pending.view');
     }
 }
