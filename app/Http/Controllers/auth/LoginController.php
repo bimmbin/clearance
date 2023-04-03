@@ -44,7 +44,7 @@ class LoginController extends Controller
             return redirect()->route('pending.view');
         } elseif ($user->role === 'student') {
             return redirect()->route('student.clearance');
-        }
+        } 
 
 
         // return redirect()->route('home');

@@ -6,10 +6,12 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\admin\CurrentViewController;
 use App\Http\Controllers\admin\EditStudentController;
 use App\Http\Controllers\student\ClearanceController;
 use App\Http\Controllers\admin\CreateOfficerController;
 use App\Http\Controllers\admin\CreateStudentController;
+use App\Http\Controllers\admin\SearchStudentController;
 use App\Http\Controllers\admin\ViewClearanceController;
 use App\Http\Controllers\admin\DeployClearanceController;
 use App\Http\Controllers\admin\RegisterOfficerController;
@@ -32,24 +34,20 @@ use App\Http\Controllers\officer\StudentClearanceController;
 
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::post('/homes', [HomeController::class, 'store'])->name('homes');
-Route::post('/decryp', [HomeController::class, 'decryp'])->name('decryp');
+Route::middleware(['guest'])->group(function () {
 
-Route::get('/register', [RegisterController::class, 'index'])
-    ->name('register')
-    ->middleware('guest');
+Route::get('/', [LoginController::class, 'index'])->name('home');
+//reg
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
-
-
-
-
+//log-in
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
+});
+//log-out
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
-
 
 // admin
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -58,8 +56,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/createstudent', [CreateStudentController::class, 'index'])->name('createstudent');
     Route::post('/previewTable', [RegisterStudentController::class, 'previewTable'])->name('previewTable');
     Route::post('/reg', [RegisterStudentController::class, 'registerStudent'])->name('registerStudent');
+    Route::post('/createsingle', [RegisterStudentController::class, 'single'])->name('admin.createsingle');
+
     //student edit
     Route::post('/editstudent', [EditStudentController::class, 'store'])->name('edit.student');
+
+    //student search
+    Route::post('/searchstudent', [SearchStudentController::class, 'store'])->name('search.student');
+    Route::get('/search-student', [SearchStudentController::class, 'index'])->name('search.studentresult');
 
 
     //officer create
@@ -74,6 +78,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //clearance create
     Route::get('/deployment', [ViewClearanceController::class, 'index'])->name('admin.deployment');
     Route::post('/create/clearance', [DeployClearanceController::class, 'store'])->name('store.clearance');
+
+    //current view
+    Route::get('/currentview', [CurrentViewController::class, 'index'])->name('admin.currentview');
+    Route::post('/currentview-update', [CurrentViewController::class, 'store'])->name('admin.updateview');
+
+
 });
 
 

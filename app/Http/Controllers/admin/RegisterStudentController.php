@@ -82,4 +82,36 @@ class RegisterStudentController extends Controller
 
         return redirect()->route('createstudent');
     }
+
+    public function single(Request $request) {
+        // dd($request); 
+
+        $spacelessUsername = str_replace(' ', '', $request->firstname);
+            
+        $user = User::firstOrNew(['username' => $spacelessUsername . $request->studentno], [
+            'password' => Hash::make($request->studentno),
+            'role' => 'student',
+        ]);
+
+        if (!$user->exists) {
+            $user->save();
+        }
+
+        $userprofile = Profiles::firstOrNew(['user_id' => $user->id], [
+            'studentno' => $request->studentno,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'middlename' => $request->middlename,
+            'sex' => $request->sex,
+            'year' => $request->year,
+            'course' => $request->course,
+            'section' => $request->section,
+        ]);
+
+        if (!$userprofile->exists) {
+            $userprofile->save();
+        }
+
+        return redirect()->route('createstudent');
+    }
 }
