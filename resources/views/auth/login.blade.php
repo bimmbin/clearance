@@ -26,6 +26,12 @@
                 <p>Password: {{ $officer->profiles->employeeno }}</p></br>
             @endempty
 
+            @empty(!$registrar)
+                <p>Registrar Account:</p>
+                <p>Username: {{ $registrar->username }}</p>
+                <p>Password: {{ $registrar->profiles->employeeno }}</p></br>
+            @endempty
+
             @empty(!$admin)
                 <p>Admin Account:</p>
                 <p>Username: {{ $admin->username }}</p>

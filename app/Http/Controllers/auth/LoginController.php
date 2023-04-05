@@ -16,10 +16,13 @@ class LoginController extends Controller
         $admin = User::firstWhere('role', 'admin');
 
         $officer = User::firstWhere('role', 'officer');
+
+        $registrar = User::firstWhere('role', 'registrar');
         
         return view('auth.login', [
             'student' => $student,
             'admin' => $admin,
+            'registrar' => $registrar,
             'officer' => $officer
         ]);
     }
@@ -44,6 +47,8 @@ class LoginController extends Controller
             return redirect()->route('pending.view');
         } elseif ($user->role === 'student') {
             return redirect()->route('student.clearance');
+        } elseif ($user->role === 'registrar') {
+            return redirect()->route('registrar.clearance');
         } 
 
 

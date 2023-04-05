@@ -22,10 +22,20 @@ class CurrentViewController extends Controller
     }
     public function store(Request $request) {
         
+        
         $currentyear = CurrentYear::first();
 
         $currentyear->school_year_id = $request->id;
         $currentyear->save();
+
+        return redirect()->back();
+    }
+
+    public function addyear(Request $request) {
+        
+        SchoolYear::create([
+            'year' => $request->year,
+        ]);
 
         return redirect()->back();
     }

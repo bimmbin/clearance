@@ -222,6 +222,24 @@
                         </li>
                     @endif
 
+                    @if (Auth::user()->role === 'registrar')
+                        <li
+                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                href="{{ route('registrar.clearance') }}">Clearance</a>
+                        </li>
+
+                        <li
+                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                href="">Reports</a>
+                        </li>
+                    @endif
+
 
                 </ul>
 
@@ -246,8 +264,8 @@
                                         class="capitalize font-medium text-lg">{{ auth()->user()->profiles->department->name }}</span>
                                 </p>
                             @endif
-                            @if (Auth::user()->role === 'admin')
-                                <p class="px-3 text-lg">Role: <span class="capitalize font-medium text-lg">Admin</span></p>
+                            @if ((Auth::user()->role === 'admin' || Auth::user()->role === 'registrar'))
+                                <p class="px-3 text-lg">Role: <span class="capitalize font-medium text-lg">{{ Auth::user()->role }}</span></p>
                             @endif
                             @if (Auth::user()->role !== 'admin')
                                 <p class="px-3">Name:

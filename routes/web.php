@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\CreateOfficerController;
 use App\Http\Controllers\admin\CreateStudentController;
 use App\Http\Controllers\admin\SearchStudentController;
 use App\Http\Controllers\admin\ViewClearanceController;
+use App\Http\Controllers\admin\CreateRegistrarController;
 use App\Http\Controllers\admin\DeployClearanceController;
 use App\Http\Controllers\admin\RegisterOfficerController;
 use App\Http\Controllers\admin\RegisterStudentController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\admin\CreateDepartmentController;
 use App\Http\Controllers\officer\ClearanceActionController;
 use App\Http\Controllers\officer\SearchClearanceController;
 use App\Http\Controllers\officer\StudentClearanceController;
+use App\Http\Controllers\registrar\RegistrarClearanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +77,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/createdepartment', [CreateDepartmentController::class, 'index'])->name('createdepartment');
     Route::post('/create/department', [CreateDepartmentController::class, 'store'])->name('store.department');
 
+    //registrar create
+    Route::get('/registrar', [CreateRegistrarController::class, 'index'])->name('admin.createregistrar');
+    Route::post('/registrar-create', [CreateRegistrarController::class, 'store'])->name('admin.registerregistrar');
+
     //clearance create
     Route::get('/deployment', [ViewClearanceController::class, 'index'])->name('admin.deployment');
     Route::post('/create/clearance', [DeployClearanceController::class, 'store'])->name('store.clearance');
@@ -82,6 +88,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //current view
     Route::get('/currentview', [CurrentViewController::class, 'index'])->name('admin.currentview');
     Route::post('/currentview-update', [CurrentViewController::class, 'store'])->name('admin.updateview');
+    //add year
+    Route::post('/add-year', [CurrentViewController::class, 'addyear'])->name('admin.addyear');
 
 
 });
@@ -107,3 +115,11 @@ Route::middleware(['auth', 'officer'])->group(function () {
     Route::post('/search', [SearchClearanceController::class, 'store'])->name('search.clearance');
     Route::get('/clearance/search', [SearchClearanceController::class, 'index'])->name('search.result');
 });
+
+// Registrar
+Route::middleware(['auth', 'registrar'])->group(function () {
+    Route::get('/registrar-clearance', [RegistrarClearanceController::class, 'index'])->name('registrar.clearance');
+});
+
+
+

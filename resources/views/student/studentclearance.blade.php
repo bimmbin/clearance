@@ -57,10 +57,11 @@
 
 
 
+                            {{-- //if this clearance equals to signature['id'] then get the signature cipher code  --}}                         
                             @foreach ($signatures as $signature)
-                                @if (in_array($clearance->id, $signature))
+                                @if ($clearance->id == $signature['clearance_id'])
                                     <img class="w-48"
-                                        src="data:image/jpeg;base64,{{ $signatures[$loop->index]['signature'] }}" />
+                                        src="data:image/jpeg;base64,{{ $signature['signature'] }}" />
                                 @else
                                     {{-- NA --}}
                                 @endif

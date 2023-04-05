@@ -56,7 +56,7 @@
             {{-- <input class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[450px]"
                 type="text" placeholder="Sex" name="sex"> --}}
 
-            <select class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[350px]">
+            <select class="py-2 border-2 rounded-xl max-sm:w-11/12 px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[350px]" name="sex">
 
                 <option class="bg-darkblue text-white" value="Male">Male</option>
                 <option class="bg-darkblue text-white" value="Female">Female</option>

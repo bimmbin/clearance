@@ -8,10 +8,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterOfficerController extends Controller
+class CreateRegistrarController extends Controller
 {
-    public function store(Request $request)
-    {
+    public function index() {
+
+        $registrar = Profiles::whereRelation('user', 'role', 'registrar')->first();
+
+        return view('admin.createregistrar', [
+            'registrar' => $registrar
+        ]);
+        // return view('admin.createregistrar');
+    }
+
+    public function store(Request $request) {
+
         $this->validate($request, [
             'firstname' => 'required',
             'lastname' => 'required',
@@ -22,7 +32,7 @@ class RegisterOfficerController extends Controller
         $spacelessUsername = str_replace(' ', '', $request->firstname);
         $user = User::firstOrNew(['username' => $spacelessUsername . $request->employeeno], [
             'password' => Hash::make($request->employeeno),
-            'role' => 'officer',
+            'role' => 'registrar',
         ]);
 
         if (!$user->exists) {
@@ -35,13 +45,12 @@ class RegisterOfficerController extends Controller
             'middlename' => $request->middlename,
             'employeeno' => $request->employeeno,
             'sex' => $request->sex,
-            'department_id' => $request->department,
         ]);
 
         if (!$userprofile->exists) {
             $userprofile->save();
         }
 
-        return redirect()->route('admin.officerview');
+        return redirect()->back();
     }
 }

@@ -178,7 +178,7 @@
                 </tr>
             </thead>
 
-            <tbody class="space-y-6 border text-left">
+            <tbody class="space-y-6 border text-left font-medium">
 
                 @foreach ($students as $student)
                     <tr class="border bg-tablebg">
