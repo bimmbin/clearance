@@ -264,8 +264,9 @@
                                         class="capitalize font-medium text-lg">{{ auth()->user()->profiles->department->name }}</span>
                                 </p>
                             @endif
-                            @if ((Auth::user()->role === 'admin' || Auth::user()->role === 'registrar'))
-                                <p class="px-3 text-lg">Role: <span class="capitalize font-medium text-lg">{{ Auth::user()->role }}</span></p>
+                            @if (Auth::user()->role === 'admin' || Auth::user()->role === 'registrar')
+                                <p class="px-3 text-lg">Role: <span
+                                        class="capitalize font-medium text-lg">{{ Auth::user()->role }}</span></p>
                             @endif
                             @if (Auth::user()->role !== 'admin')
                                 <p class="px-3">Name:
@@ -446,10 +447,16 @@
     @foreach (range(1, 10) as $i)
         function dropEdit{{ $loop->index }}() {
             document.getElementById("edit-{{ $loop->index }}").classList.toggle("hidden");
+            if (!document.getElementById("setting-{{ $loop->index }}").classList.contains("hidden")) {
+                document.getElementById("setting-{{ $loop->index }}").classList.toggle("hidden");
+            } 
         }
 
         function dropSetting{{ $loop->index }}() {
             document.getElementById("setting-{{ $loop->index }}").classList.toggle("hidden");
+            if (!document.getElementById("edit-{{ $loop->index }}").classList.contains("hidden")) {
+                document.getElementById("edit-{{ $loop->index }}").classList.toggle("hidden");
+            } 
         }
     @endforeach
 

@@ -24,6 +24,6 @@ class EditStudentController extends Controller
 
         $student->save();
 
-        return back();
+        return redirect()->route('createstudent');
     }
 }

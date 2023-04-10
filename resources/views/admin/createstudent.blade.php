@@ -161,11 +161,11 @@
     <div class="w-full h-fit pb-28 overflow-x-auto px-3 lg:px-10 xl:px-10 overflow-y-hidden">
 
         <table id="dataTable"
-            class="pl-5 table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] text-lg xl:w-full"
-            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem); whitespace-nowrap">
+            class="pl-5 max-sm:pl-0 table-auto text-center w-[1920px] max-lg:w-[1280px] max-sm:w-[900px] text-lg xl:w-full whitespace-nowrap"
+            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem); ">
             <thead>
-                <tr class="space-y-3 pl-5">
-                    <th class="text-left pl-12">Number</th>
+                <tr class="space-y-3 pl-5 max-sm:pl-0">
+                    <th class="text-left pl-12 max-sm:pl-5">Number</th>
                     <th class="text-left pl-5">Student No.</th>
                     <th class="text-left pl-5">First Name</th>
                     <th class="text-left pl-5">Last Name</th>
@@ -222,35 +222,81 @@
                 @endforeach
                 <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
                     id="editDiaglogBox">
-                    <div class="absolute z-50 bg-white py-5 px-5 rounded-lg">
-                        <form method="POST" action="{{ route('edit.student') }}"
-                            class="flex flex-col justify-center items-center">
+                    <div class="absolute z-50 bg-white py-5 px-5 rounded-lg ">
+                        <form action="{{ route('edit.student') }}" method="post"
+                            class="flex justify-center items-center">
                             @csrf
 
-                            <input type="text" class="w-[200px] border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                id="a" placeholder="Student No" name="studentno">
-                            <input type="text" class="w-[200px] border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                id="b" placeholder="First Name" name="firstname">
-                            <input type="text" class="w-[200px] border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                id="c" placeholder="Last Name" name="lastname">
-                            <input type="text" class="w-[200px] border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                id="d" placeholder="Middle Name" name="middlename">
-                            <span type="submit" id="cancelBtn"
-                                class=" w-[100px] bg-gray-400 hover:bg-gray-500 py-2 px-3 text-lg rounded-md text-white text-center cursor-pointer">Cancel</span>
-                            </br>
+                            <div class="flex max-sm:flex-col items-center">
+                                <div class="flex w-[53rem] max-sm:w-full  flex-wrap gap-2 justify-center items-center max-sm:flex-col">
+                                    <div class="flex flex-col max-sm:w-full">
+                                        <label for="a" class="font-semibold text-sm">Student Number</label>
+                                        <input type="text"
+                                            class="w-[200px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                            id="a" placeholder="Student No" name="studentno">
+                                    </div>
 
-                            <input type="text" class="w-[200px] border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                id="e" placeholder="Sex" name="sex">
-                            <input type="text" class="w-[200px] border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                id="f" placeholder="Year" name="year">
-                            <input type="text" class="w-[200px] border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                id="g" placeholder="Course" name="course">
-                            <input type="text" class="w-[200px] border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                id="h" placeholder="Section" name="section">
-                            <input type="hidden" id="i" name="id">
-                            <button type="submit"
-                                class=" w-[100px] bg-blue-500 hover:bg-blue-400 py-2 px-3 text-lg rounded-md text-white">Save</button>
+                                    <div class="flex flex-col">
+                                        <label for="b" class="font-semibold text-sm">First Name</label>
+                                        <input type="text"
+                                            class="w-[200px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                            id="b" placeholder="First Name" name="firstname">
+                                    </div>
 
+                                    <div class="flex flex-col">
+                                        <label for="c" class="font-semibold text-sm">Last Name</label>
+                                        <input type="text"
+                                            class="w-[200px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                            id="c" placeholder="Last Name" name="lastname">
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <label for="d" class="font-semibold text-sm">Middle Name</label>
+                                        <input type="text"
+                                            class="w-[200px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                            id="d" placeholder="Middle Name" name="middlename">
+                                    </div>
+
+
+                                    <div class="flex flex-col">
+                                        <label for="e" class="font-semibold text-sm">Gender</label>
+
+                                        <input type="text"
+                                            class="w-[200px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                            id="e" placeholder="Sex" name="sex">
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <label for="f" class="font-semibold text-sm">Year</label>
+                                        <input type="text"
+                                            class="w-[200px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                            id="f" placeholder="Year" name="year">
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <label for="g" class="font-semibold text-sm">Course</label>
+                                        <input type="text"
+                                            class="w-[200px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                            id="g" placeholder="Course" name="course">
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <label for="h" class="font-semibold text-sm">Section</label>
+                                        <input type="text"
+                                            class="w-[200px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                            id="h" placeholder="Section" name="section">
+                                    </div>
+
+                                    <input type="hidden" id="i" name="id">
+                                </div>
+
+                                <div class="flex flex-col gap-2  max-sm:w-full  max-sm:mt-2">
+                                    <span type="submit" id="cancelBtn"
+                                        class=" w-[100px] max-sm:w-full bg-gray-400 hover:bg-gray-500 py-2 px-3 text-lg rounded-md text-white text-center cursor-pointer flex-1 flex items-center justify-center">Cancel</span>
+                                    <button type="submit"
+                                        class=" w-[100px] max-sm:w-full bg-blue-500 hover:bg-blue-400 py-2 px-3 text-lg rounded-md text-white flex-1">Save</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="absolute bg-black opacity-60 w-[100vw] h-[100vh] z-20" id="bgBlack"></div>
