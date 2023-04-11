@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\registrar;
 
-use App\Http\Controllers\Controller;
+use App\Models\Log;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ReportController extends Controller
 {
     public function index() {
         // dd("asdfsdf");
-
-        return view('registrar.reports');
+        $logs = Log::latest()->get();
+        return view('registrar.reports', [
+            'reports' => $logs
+        ]);
     }
 }

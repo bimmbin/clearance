@@ -123,9 +123,9 @@ Route::middleware(['auth', 'registrar'])->group(function () {
    
     Route::get('/registrar-clearance', [RegistrarClearanceController::class, 'index'])->name('registrar.clearance');
     
-    // Route::get('/registrar-reports', [ReportController::class, 'index'])->name('registrar.reports');
+    Route::get('/registrar-reports', [ReportController::class, 'index'])->name('registrar.reports');
     
-    Route::get('/registrar-reports', \App\Http\Livewire\ReportList::class)->name('registrar.reports');
+    // Route::get('/registrar-reports', \App\Http\Livewire\ReportList::class)->name('registrar.reports');
 
     Route::post('/search-clearance', [RegistrarSearchController::class, 'store'])->name('registrar.search');
 
