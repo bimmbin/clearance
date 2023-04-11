@@ -5,8 +5,8 @@
 
 
 @section('content')
-    <div class="absolute top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center bg-checkb gap-48">
-        <div class="text-white flex flex-col gap-2">
+    <div class="absolute top-0 left-0 w-[100vw] h-[100vh] flex max-lg:flex-col items-center justify-center bg-checkb gap-48">
+        <div class="text-white flex flex-col gap-2 max-lg:hidden">
             <img src="img/icons/chcclogo-white.png" class="w-[40rem] absolute opacity-5 mt-[-10rem] ml-[-10rem]" alt="">
             <p class="text-3xl">Concepcion Holy Cross College Inc</p>
             <h1 class="text-6xl font-semibold">Clearance System</h1>

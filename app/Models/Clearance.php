@@ -27,5 +27,7 @@ class Clearance extends Model
     public function schoolyear() {
         return $this->belongsTo(SchoolYear::class, 'school_year_id');
     }
-
+    public function log() {
+        return $this->hasMany(Log::class);
+    }
 }

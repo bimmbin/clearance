@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\registrar\ReportController;
 use App\Http\Controllers\admin\CurrentViewController;
 use App\Http\Controllers\admin\EditStudentController;
 use App\Http\Controllers\student\ClearanceController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\admin\CreateDepartmentController;
 use App\Http\Controllers\officer\ClearanceActionController;
 use App\Http\Controllers\officer\SearchClearanceController;
 use App\Http\Controllers\officer\StudentClearanceController;
+use App\Http\Controllers\registrar\RegistrarSearchController;
 use App\Http\Controllers\registrar\RegistrarClearanceController;
 
 /*
@@ -118,7 +120,15 @@ Route::middleware(['auth', 'officer'])->group(function () {
 
 // Registrar
 Route::middleware(['auth', 'registrar'])->group(function () {
+   
     Route::get('/registrar-clearance', [RegistrarClearanceController::class, 'index'])->name('registrar.clearance');
+    
+    // Route::get('/registrar-reports', [ReportController::class, 'index'])->name('registrar.reports');
+    
+    Route::get('/registrar-reports', \App\Http\Livewire\ReportList::class)->name('registrar.reports');
+
+    Route::post('/search-clearance', [RegistrarSearchController::class, 'store'])->name('registrar.search');
+
 });
 
 

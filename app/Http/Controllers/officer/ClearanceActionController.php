@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\officer;
 
+use App\Models\Log;
 use App\Models\Clearance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class ClearanceActionController extends Controller
@@ -27,6 +29,12 @@ class ClearanceActionController extends Controller
         $clearance->remarks = '';
         $clearance->save();
 
+        Log::create([
+            'clearance_id' => $clearance->id,
+            'profile_id' => Auth::user()->profiles->id,
+            'details' => 'approved',
+        ]);
+
         return redirect()->route('pending.view');
     }
 
@@ -38,6 +46,13 @@ class ClearanceActionController extends Controller
         $clearance->signature = '';
         $clearance->remarks = $request->remarks;
         $clearance->save();
+
+        Log::create([
+            'clearance_id' => $clearance->id,
+            'profile_id' => Auth::user()->profiles->id,
+            'details' => 'disapproved',
+        ]);
+
 
         return redirect()->route('pending.view');
     }

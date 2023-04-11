@@ -35,4 +35,7 @@ class Profiles extends Model
     public function clearance() {
         return $this->hasMany(Clearance::class, 'profile_id');
     }
+    public function log() {
+        return $this->hasMany(Log::class);
+    }
 }
