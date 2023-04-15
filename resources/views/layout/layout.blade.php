@@ -299,9 +299,9 @@
                         <li>
                             <a href="{{ route('login') }}" class="p-3">Login</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('register') }}" class="p-3">Register</a>
-                        </li>
+                        </li> --}}
                     @endguest
                 </ul>
                 {{-- <div class="flex items-center gap-5">
@@ -468,10 +468,10 @@
                                     class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
                                     <a href="{{ route('login') }}" class="p-3">Login</a>
                                 </li>
-                                <li
+                                {{-- <li
                                     class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
                                     <a href="{{ route('register') }}" class="p-3">Register</a>
-                                </li>
+                                </li> --}}
                             @endguest
 
                         </ul>
