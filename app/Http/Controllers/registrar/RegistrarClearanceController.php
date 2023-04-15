@@ -6,6 +6,7 @@ use App\Models\Profiles;
 use App\Models\Clearance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CurrentYear;
 use Illuminate\Support\Facades\Crypt;
 
 class RegistrarClearanceController extends Controller
@@ -16,10 +17,18 @@ class RegistrarClearanceController extends Controller
             $query->where('role', 'student');
         })->paginate(10);
 
+        $currentyear = CurrentYear::first();
+
         $approvedClearances = Clearance::whereHas('profiles.user', function ($query) {
             $query->where('role', 'student');
+        })->whereHas('schoolyear', function ($query) use ($currentyear) {
+            $query->where('id', $currentyear->id);
         })->where('status', 'approved')
         ->get();
+
+
+   
+    
 
         $decryptedImages = [];
 

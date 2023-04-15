@@ -14,6 +14,6 @@ class CurrentYear extends Model
     ];
 
     public function Clearance() {
-        return $this->belongsTo(SchoolYear::class, 'school_year_id');
+        return $this->belongsTo(SchoolYear::class);
     }
 }

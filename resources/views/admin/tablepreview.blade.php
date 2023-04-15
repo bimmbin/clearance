@@ -62,8 +62,8 @@
                                 <td class="pl-5">{{ $student[4] }} <input type="hidden" name="sex[]"
                                         value="{{ $student[4] }}"></td>
 
-                                <td class="pl-5">{{ $student[5] }} <input type="hidden" name="year[]"
-                                        value="{{ $student[5] }}"></td>
+                                <td class="pl-5">{{ substr($student[5], 1) }} <input type="hidden" name="year[]"
+                                        value="{{ substr($student[5], 1) }}"></td>
 
                                 <td class="pl-5">{{ $student[6] }} <input type="hidden" name="course[]"
                                         value="{{ $student[6] }}"></td>

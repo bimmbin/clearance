@@ -96,7 +96,7 @@
                         <th>Name</th>
                         <th>Employee No.</th>
                         <th>Department</th>
-                        <th>Action</th>
+                        {{-- <th>Action</th> --}}
                     </tr>
                 </thead>
 
@@ -108,7 +108,7 @@
                                 <td>{{ $officer->firstname . ' ' . $officer->lastname }}</td>
                                 <td>{{ $officer->employeeno }}</td>
                                 <td>{{ $officer->department->name }}</td>
-                                <td class="py-2 flex gap-2">
+                                {{-- <td class="py-2 flex gap-2">
 
                                     <div class="relative">
                                         <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
@@ -128,7 +128,7 @@
                                     </div>
                                     
 
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     @endif

@@ -87,7 +87,7 @@
                         <th>Last Name</th>
                         <th>Middle Name</th>
                         <th>Gender</th>
-                        <th>Action</th>
+                        {{-- <th>Action</th> --}}
                     </tr>
                 </thead>
 

@@ -66,7 +66,7 @@
                     <th class="text-center pl-5">No.</th>
                     <th class="text-left pl-10">Year</th>
                     <th class="text-left pl-10">Students</th>
-                    <th class="text-left pl-10">Action</th>
+                    {{-- <th class="text-left pl-10">Action</th> --}}
 
 
                 </tr>

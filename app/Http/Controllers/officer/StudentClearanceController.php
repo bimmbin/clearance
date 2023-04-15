@@ -76,7 +76,6 @@ class StudentClearanceController extends Controller
                 $query->where('year', $schoolyear->year);
     
             })->where('status', 'pending')
-            ->orderBy('updated_at', 'desc')
             ->paginate(10);
 
 

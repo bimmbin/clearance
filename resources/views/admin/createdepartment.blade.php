@@ -41,7 +41,7 @@
                         <th>Number</th>
                         <th>Department Name</th>
                         <th>Assigned Officer</th>
-                        <th class="flex justify-center pb-3">Action</th>
+                        {{-- <th class="flex justify-center pb-3">Action</th> --}}
                     </tr>
                 </thead>
 
@@ -57,7 +57,7 @@
                             <td>{{ $department->profiles->firstname . ' ' . $department->profiles->lastname }}</td>
                             @endif
 
-                            <td class="py-2 flex gap-2">
+                            {{-- <td class="py-2 flex gap-2">
 
                                 <div class="relative">
                                     <div class="bg-btnbg cursor-pointer hover:bg-btnhoverbg rounded-md"
@@ -90,7 +90,7 @@
                                     </div>
                                 </div>
 
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
 
