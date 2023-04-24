@@ -65,7 +65,7 @@
                 <tr class="space-y-3 pl-10">
                     <th class="text-center pl-5">No.</th>
                     <th class="text-left pl-10">Year</th>
-                    <th class="text-left pl-10">Students</th>
+                    <th class="text-left pl-10">Students with clearance</th>
                     {{-- <th class="text-left pl-10">Action</th> --}}
 
 

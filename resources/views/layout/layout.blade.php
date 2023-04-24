@@ -171,13 +171,13 @@
                         </li>
 
                         <li
-                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                        <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
-                        <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                            href="{{ route('admin.createregistrar') }}">Registrar</a>
+                            <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
+                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                href="{{ route('admin.createregistrar') }}">Registrar</a>
 
-                    </li>
+                        </li>
 
                         <li
                             class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
@@ -247,6 +247,14 @@
                             <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
                                 href="{{ route('registrar.reports') }}">Reports</a>
                         </li>
+
+                        <li
+                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                href="{{ route('registrar.stats') }}">Stats</a>
+                        </li>
                     @endif
 
 
@@ -299,9 +307,9 @@
                         <li>
                             <a href="{{ route('login') }}" class="p-3">Login</a>
                         </li>
-                        {{-- <li>
+                        <li>
                             <a href="{{ route('register') }}" class="p-3">Register</a>
-                        </li> --}}
+                        </li>
                     @endguest
                 </ul>
                 {{-- <div class="flex items-center gap-5">
@@ -443,6 +451,15 @@
                                             style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
                                             href="{{ route('registrar.reports') }}">Reports</a>
                                     </li>
+
+                                    <li
+                                        class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+
+                                        <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                        <a class=""
+                                            style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
+                                            href="{{ route('registrar.stats') }}">Stats</a>
+                                    </li>
                                 @endif
                             @endauth
 
@@ -468,10 +485,10 @@
                                     class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
                                     <a href="{{ route('login') }}" class="p-3">Login</a>
                                 </li>
-                                {{-- <li
+                                <li
                                     class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
                                     <a href="{{ route('register') }}" class="p-3">Register</a>
-                                </li> --}}
+                                </li>
                             @endguest
 
                         </ul>

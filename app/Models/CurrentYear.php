@@ -13,7 +13,7 @@ class CurrentYear extends Model
         'school_year_id',
     ];
 
-    public function Clearance() {
-        return $this->belongsTo(SchoolYear::class);
+    public function schoolyear() {
+        return $this->belongsTo(SchoolYear::class, 'school_year_id');
     }
 }

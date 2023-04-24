@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\User;
 use App\Models\Profiles;
+use App\Models\CurrentYear;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -19,10 +20,13 @@ class RegisterOfficerController extends Controller
             'employeeno' => 'required',
         ]);
 
+        $currentyear = CurrentYear::first();
+
         $spacelessUsername = str_replace(' ', '', $request->firstname);
         $user = User::firstOrNew(['username' => $spacelessUsername . $request->employeeno], [
             'password' => Hash::make($request->employeeno),
             'role' => 'officer',
+            'school_year_id' => $currentyear->schoolyear->year
         ]);
 
         if (!$user->exists) {

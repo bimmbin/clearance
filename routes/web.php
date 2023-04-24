@@ -24,6 +24,7 @@ use App\Http\Controllers\officer\SearchClearanceController;
 use App\Http\Controllers\officer\StudentClearanceController;
 use App\Http\Controllers\registrar\RegistrarSearchController;
 use App\Http\Controllers\registrar\RegistrarClearanceController;
+use App\Http\Controllers\registrar\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,8 +43,8 @@ Route::middleware(['guest'])->group(function () {
 
 Route::get('/', [LoginController::class, 'index'])->name('home');
 //reg
-// Route::get('/register', [RegisterController::class, 'index'])->name('register');
-// Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
 
 //log-in
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -129,6 +130,9 @@ Route::middleware(['auth', 'registrar'])->group(function () {
 
     Route::post('/search-clearance', [RegistrarSearchController::class, 'store'])->name('registrar.search');
 
+    //stats 
+    Route::get('/registrar-stats', [StatsController::class, 'index'])->name('registrar.stats');
+    
 });
 
 

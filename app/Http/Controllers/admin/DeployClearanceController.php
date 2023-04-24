@@ -17,7 +17,7 @@ class DeployClearanceController extends Controller
 
         $departments = Department::all();
 
-
+// dd($departments);
         foreach ($users as $user) {
 
       

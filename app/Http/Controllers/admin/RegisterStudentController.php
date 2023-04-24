@@ -6,6 +6,7 @@ use App\Models\Keys;
 use App\Models\User;
 use App\Models\Profiles;
 use Shuchkin\SimpleXLSX;
+use App\Models\CurrentYear;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -49,19 +50,26 @@ class RegisterStudentController extends Controller
 
     public function registerStudent(Request $request)
     {
+        $currentyear = CurrentYear::first();
 
+
+        $studentRegCount = 0;
         foreach ($request->studentno as $i => $studentnumber) {
 
+           
             $spacelessUsername = str_replace(' ', '', $request->firstname[$i]);
             
-            $user = User::firstOrNew(['username' => $spacelessUsername . $studentnumber], [
+            $user = User::firstOrNew(['username' => $spacelessUsername . $studentnumber, 
+                                        'school_year_id' => $currentyear->school_year_id], [
                 'password' => Hash::make($studentnumber),
                 'role' => 'student',
+                
             ]);
 
 
             if (!$user->exists) {
                 $user->save();
+                $studentRegCount++;
             }
 
             $userprofile = Profiles::firstOrNew(['user_id' => $user->id,], [
@@ -80,21 +88,29 @@ class RegisterStudentController extends Controller
             }
         }
 
-        return redirect()->route('createstudent');
+        // dd($studentRegCount);
+        return redirect()->route('createstudent')->with([
+            'studentRegCount' => $studentRegCount,
+            'currentyear' => $currentyear->schoolyear->year,
+        ]);
     }
 
     public function single(Request $request) {
         // dd($request); 
+        $currentyear = CurrentYear::first();
 
         $spacelessUsername = str_replace(' ', '', $request->firstname);
-            
-        $user = User::firstOrNew(['username' => $spacelessUsername . $request->studentno], [
+
+        $studentRegCount = 0;
+        $user = User::firstOrNew(['username' => $spacelessUsername . $request->studentno, 
+                                'school_year_id' => $currentyear->school_year_id], [
             'password' => Hash::make($request->studentno),
             'role' => 'student',
         ]);
 
         if (!$user->exists) {
             $user->save();
+            $studentRegCount++;
         }
 
         $userprofile = Profiles::firstOrNew(['user_id' => $user->id], [
@@ -112,6 +128,9 @@ class RegisterStudentController extends Controller
             $userprofile->save();
         }
 
-        return redirect()->route('createstudent');
+        return redirect()->route('createstudent')->with([
+            'studentRegCount' => $studentRegCount,
+            'currentyear' => $currentyear->schoolyear->year,
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\User;
 use App\Models\Profiles;
 use App\Models\Clearance;
 use App\Models\SchoolYear;
@@ -20,8 +21,8 @@ class ViewClearanceController extends Controller
             ->get();
 
 
-         $schoolyears = SchoolYear::all();       
-
+         $schoolyears = SchoolYear::all();    
+        
         $studentcount = [];
         foreach ($schoolyears as $schoolyear) {
             $studentsCount = Clearance::where('school_year_id', '=', $schoolyear->id)

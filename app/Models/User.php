@@ -21,6 +21,7 @@ class User extends Authenticatable
         'username',
         'password',
         'role',
+        'school_year_id',
     ];
 
     /**
@@ -47,6 +48,9 @@ class User extends Authenticatable
     }
     public function keys() {
         return $this->hasOne(Keys::class);
+    }
+    public function schoolyear() {
+        return $this->belongsTo(SchoolYear::class, 'school_year_id');
     }
     
 }

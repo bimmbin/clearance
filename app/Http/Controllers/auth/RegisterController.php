@@ -30,6 +30,7 @@ class RegisterController extends Controller
             'role' => $request->role,
             // 'email' => $request->email,
             'password' => Hash::make($request->password),
+            'school_year_id' => '1',
         ]);
 
         //Creating years

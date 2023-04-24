@@ -19,4 +19,7 @@ class SchoolYear extends Model
     public function currentyear() {
         return $this->hasOne(CurrentYear::class, 'school_year_id');
     }
+    public function user() {
+        return $this->hasMany(User::class);
+    }
 }

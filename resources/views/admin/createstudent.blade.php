@@ -5,6 +5,11 @@
 
 
 @section('content')
+    @if (session('studentRegCount'))
+        <div class="bg-green-500 p-4 rounded-lg mb-6 text-white text-center">
+            Added {{ session('studentRegCount') }} students account for {{ session('currentyear') }}
+        </div>
+    @endif
     <div class="pt-[30px]">
         <button
             class="text-white font-semibold max-sm:ml-5 max-lg:ml-10 ml-[83px] w-fit bg-darkblue px-3 py-1 rounded-lg cursor-pointer"
@@ -137,9 +142,11 @@
 
     <div class="flex flex-col py-5 px-5 gap-4 md:px-10 xl:flex-row xl:justify-between">
 
+        <div class="flex flex-col gap-2">
         <h1 class="text-blacky font-semibold" style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">List
             of Students</h1>
-
+            <h1 class="text-blacky text-lg">Year: {{ $currentyear }}</h1>
+        </div>
         <form action="{{ route('search.student') }}" method="post" class="relative">
             @csrf
             <input type="text" name="search"
@@ -228,7 +235,8 @@
                             @csrf
 
                             <div class="flex max-sm:flex-col items-center">
-                                <div class="flex w-[53rem] max-sm:w-full  flex-wrap gap-2 justify-center items-center max-sm:flex-col">
+                                <div
+                                    class="flex w-[53rem] max-sm:w-full  flex-wrap gap-2 justify-center items-center max-sm:flex-col">
                                     <div class="flex flex-col max-sm:w-full">
                                         <label for="a" class="font-semibold text-sm">Student Number</label>
                                         <input type="text"
