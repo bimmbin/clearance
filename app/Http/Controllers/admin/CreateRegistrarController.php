@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\User;
 use App\Models\Profiles;
+use App\Models\CurrentYear;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,7 @@ class CreateRegistrarController extends Controller
 {
     public function index() {
 
-        $registrar = Profiles::whereRelation('user', 'role', 'registrar')->first();
+        $registrar = Profiles::whereRelation('user', 'role', 'registrar')->get();
 
         return view('admin.createregistrar', [
             'registrar' => $registrar
@@ -27,12 +28,16 @@ class CreateRegistrarController extends Controller
             'lastname' => 'required',
             'middlename' => 'required',
             'employeeno' => 'required',
+            'position' => 'required',
         ]);
+
+        $currentyear = CurrentYear::first();
 
         $spacelessUsername = str_replace(' ', '', $request->firstname);
         $user = User::firstOrNew(['username' => $spacelessUsername . $request->employeeno], [
             'password' => Hash::make($request->employeeno),
             'role' => 'registrar',
+            'school_year_id' => $currentyear->schoolyear->id,
         ]);
 
         if (!$user->exists) {
@@ -45,6 +50,7 @@ class CreateRegistrarController extends Controller
             'middlename' => $request->middlename,
             'employeeno' => $request->employeeno,
             'sex' => $request->sex,
+            'section' => $request->position,
         ]);
 
         if (!$userprofile->exists) {
