@@ -6,8 +6,10 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\registrar\StatsController;
 use App\Http\Controllers\registrar\ReportController;
 use App\Http\Controllers\admin\CurrentViewController;
+use App\Http\Controllers\admin\EditOfficerController;
 use App\Http\Controllers\admin\EditStudentController;
 use App\Http\Controllers\student\ClearanceController;
 use App\Http\Controllers\admin\CreateOfficerController;
@@ -24,7 +26,6 @@ use App\Http\Controllers\officer\SearchClearanceController;
 use App\Http\Controllers\officer\StudentClearanceController;
 use App\Http\Controllers\registrar\RegistrarSearchController;
 use App\Http\Controllers\registrar\RegistrarClearanceController;
-use App\Http\Controllers\registrar\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,14 +73,19 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
     //officer create
-
     Route::get('/officer', [CreateOfficerController::class, 'index'])->name('admin.officerview');
     Route::post('/officercreate', [RegisterOfficerController::class, 'store'])->name('admin.createofficer');
+
+    //officer edit
+    Route::post('/editofficer', [EditOfficerController::class, 'store'])->name('edit.officer');
+    //officer delete
+    Route::post('/deleteofficer', [EditOfficerController::class, 'delete'])->name('delete.officer');
 
     //department create
     Route::get('/createdepartment', [CreateDepartmentController::class, 'index'])->name('createdepartment');
     Route::post('/create/department', [CreateDepartmentController::class, 'store'])->name('store.department');
 
+    
     //registrar create
     Route::get('/registrar', [CreateRegistrarController::class, 'index'])->name('admin.createregistrar');
     Route::post('/registrar-create', [CreateRegistrarController::class, 'store'])->name('admin.registerregistrar');
@@ -134,6 +140,3 @@ Route::middleware(['auth', 'registrar'])->group(function () {
     Route::get('/registrar-stats', [StatsController::class, 'index'])->name('registrar.stats');
     
 });
-
-
-

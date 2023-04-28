@@ -48,7 +48,7 @@
                 <tbody class="space-y-6 font-semibold bg-tablebg">
 
                     @foreach ($departments as $department)
-                        <tr class="border">
+                        <tr class="font-medium border">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $department->name }}</td>
                             @if (empty(optional($department)->profiles->firstname))
