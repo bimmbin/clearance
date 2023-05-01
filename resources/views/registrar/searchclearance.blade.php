@@ -81,7 +81,9 @@
                                         </thead>
 
                                         <tbody class="text-left">
-                                            @foreach ($profile->clearance as $clearans)
+                                            @foreach ($profile->clearance()->whereHas('schoolyear.currentyear', function ($query) {
+                                                $query->where('id', '1');
+                                            })->get() as $clearans)
                                                 <tr
                                                     class="border text-sm md:text-base lg:text-lg font-regular bg-{{ $clearans->status == 'approved' ? 'green-300' : ($clearans->status == 'disapproved' ? 'red-300' : 'tablebg') }}">
                                                     <td class="pl-10 py-4 px-5">{{ $loop->iteration }}</td>

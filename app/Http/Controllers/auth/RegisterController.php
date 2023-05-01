@@ -34,24 +34,29 @@ class RegisterController extends Controller
         ]);
 
         //Creating years
-        $years = ['2023-2024','2024-2025','2025-2026'];
+        // $years = ['2023-2024','2024-2025','2025-2026'];
 
-        foreach ($years as $year) {
-            $skulyear = SchoolYear::firstOrNew(['year' => $year]);
+        // foreach ($years as $year) {
+        //     $skulyear = SchoolYear::firstOrNew(['year' => $year]);
     
-            if (!$skulyear->exists) {
-                $skulyear->save();
+        //     if (!$skulyear->exists) {
+        //         $skulyear->save();
+        //     }
+        // }
+
+        if (!CurrentYear::count() > 0) {
+
+            $currYear = CurrentYear::firstOrNew(['school_year_id' => '1']);
+    
+            if (!$currYear->exists) {
+                $currYear->save();
             }
-        }
-
-        $currYear = CurrentYear::firstOrNew(['school_year_id' => '1']);
-    
-        if (!$currYear->exists) {
-            $currYear->save();
-        }
+            
+        } 
+        
 
         auth()->attempt($request->only('username', 'password'));
 
-        return redirect()->route('createstudent');
+        return redirect()->route('admin.currentview');
     }
 }

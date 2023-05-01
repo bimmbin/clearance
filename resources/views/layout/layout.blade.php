@@ -145,115 +145,115 @@
 
 
                     @if (Auth::user()->role === 'admin')
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/Student Center.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('createstudent') }}">Student</a>
+                        <li>
+                            <a href="{{ route('createstudent') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Student Center.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Student</p>
+                            </a>
                         </li>
 
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('createdepartment') }}">Department</a>
+                        <li>
+                            <a href="{{ route('createdepartment') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Department</p>
+                            </a>
                         </li>
 
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('admin.officerview') }}">Officer</a>
-
+                        <li>
+                            <a href="{{ route('admin.officerview') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Officer</p>
+                            </a>
                         </li>
 
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('admin.createregistrar') }}">Registrar</a>
-
+                        <li>
+                            <a href="{{ route('admin.createregistrar') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/School Director.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Registrar</p>
+                            </a>
                         </li>
 
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('admin.deployment') }}">Deployment</a>
+                        <li>
+                            <a href="{{ route('admin.deployment') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Deployment</p>
+                            </a>
                         </li>
 
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('admin.currentview') }}">View</a>
+                        <li>
+                            <a href="{{ route('admin.currentview') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">View</p>
+                            </a>
                         </li>
                     @endif
 
 
                     @if (Auth::user()->role === 'student')
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('student.clearance') }}">Clearance</a>
+                        <li>
+                            <a href="{{ route('student.clearance') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Clearance</p>
+                            </a>
                         </li>
                     @endif
 
                     @if (Auth::user()->role === 'officer')
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('approved.view') }}">Approved</a>
+                        <li>
+                            <a href="{{ route('approved.view') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Approved</p>
+                            </a>
                         </li>
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('disapproved.view') }}">Disapproved</a>
+                        <li>
+                            <a href="{{ route('disapproved.view') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Disapproved</p>
+                            </a>
                         </li>
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
 
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('pending.view') }}">Pending</a>
+                        <li>
+                            <a href="{{ route('pending.view') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Pending</p>
+                            </a>
                         </li>
                     @endif
 
                     @if (Auth::user()->role === 'registrar')
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('registrar.clearance') }}">Clearance</a>
+                        <li>
+                            <a href="{{ route('registrar.clearance') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Clearance</p>
+                            </a>
                         </li>
 
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('registrar.reports') }}">Reports</a>
+                        <li>
+                            <a href="{{ route('registrar.reports') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Reports</p>
+                            </a>
                         </li>
 
-                        <li
-                            class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
-
-                            <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
-                            <a class="" style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);"
-                                href="{{ route('registrar.stats') }}">Stats</a>
+                        <li>
+                            <a href="{{ route('registrar.stats') }}"
+                                class="w-[130px] pt-3 flex gap-3 border-b items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium">
+                                <img class="w-[20px] h-[20px]" src="img/icons/Tasklist.png" alt="">
+                                <p style="font-size: clamp(0.875rem, 0.75rem + 0.3125vw, 1.125rem);">Stats</p>
+                            </a>
                         </li>
                     @endif
 
@@ -281,9 +281,13 @@
                                         class="capitalize font-medium text-lg">{{ auth()->user()->profiles->department->name }}</span>
                                 </p>
                             @endif
-                            @if (Auth::user()->role === 'admin' || Auth::user()->role === 'registrar')
+                            @if (Auth::user()->role === 'admin')
                                 <p class="px-3 text-lg">Role: <span
                                         class="capitalize font-medium text-lg">{{ Auth::user()->role }}</span></p>
+                            @endif
+                            @if (Auth::user()->role === 'registrar')
+                                <p class="px-3 text-lg">Role: <span
+                                        class="capitalize font-medium text-lg">{{ Auth::user()->profiles->section }}</span></p>
                             @endif
                             @if (Auth::user()->role !== 'admin')
                                 <p class="px-3">Name:

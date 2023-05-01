@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('department_id')->constrained()->cascadeOnDelete();
             $table->foreignId('profile_id')->constrained()->cascadeOnDelete();
             $table->text('signature')->nullable();
-            $table->text('school_year_id');
+            $table->foreignId('school_year_id')->constrained()->cascadeOnDelete();
             $table->text('remarks')->nullable();;
             $table->text('status');
         });

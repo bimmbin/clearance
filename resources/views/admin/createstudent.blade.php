@@ -12,7 +12,7 @@
     @endif
     <div class="pt-[30px]">
         <button
-            class="text-white font-semibold max-sm:ml-5 max-lg:ml-10 ml-[83px] w-fit bg-darkblue px-3 py-1 rounded-lg cursor-pointer"
+            class="text-white font-semibold max-sm:ml-5 max-lg:ml-10 ml-10 w-fit bg-darkblue px-3 py-1 rounded-lg cursor-pointer"
             style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);" id="createBtn">
             Create Student Account</button>
     </div>
@@ -31,7 +31,7 @@
                     class="flex flex-col flex-wrap max-sm:flex-nowrap max-h-[15rem] max-sm:max-h-full w-fit max-sm:w-full gap-2">
                     <input
                         class="py-2 border-2 rounded-xl max-sm:w-full px-5 placeholder:text-sm w-[400px] lg:py-3 lg:w-[300px] @error('studentno') border-red-500 @enderror"
-                        value="{{ old('studentno') }}" type="text" placeholder="Student Number" name="studentno">
+                        value="{{ old('studentno') }}" type="number" placeholder="Student Number" name="studentno">
 
                     @error('studentno')
                         <div class="text-red-500 max-sm:mt-[-1rem] mt-[-0.5rem] text-sm">

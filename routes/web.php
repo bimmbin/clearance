@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\registrar\StatsController;
+use App\Http\Controllers\admin\DeleteYearController;
 use App\Http\Controllers\registrar\ReportController;
 use App\Http\Controllers\admin\CurrentViewController;
 use App\Http\Controllers\admin\EditOfficerController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\admin\EditStudentController;
 use App\Http\Controllers\student\ClearanceController;
 use App\Http\Controllers\admin\CreateOfficerController;
 use App\Http\Controllers\admin\CreateStudentController;
+use App\Http\Controllers\admin\EditRegistrarController;
 use App\Http\Controllers\admin\SearchStudentController;
 use App\Http\Controllers\admin\ViewClearanceController;
 use App\Http\Controllers\admin\CreateRegistrarController;
@@ -90,6 +92,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/registrar', [CreateRegistrarController::class, 'index'])->name('admin.createregistrar');
     Route::post('/registrar-create', [CreateRegistrarController::class, 'store'])->name('admin.registerregistrar');
 
+    //registrar edit
+    Route::post('/editregistrar', [EditRegistrarController::class, 'store'])->name('edit.registrar');
+    //registrar delete
+    Route::post('/deleteregistrar', [EditRegistrarController::class, 'delete'])->name('delete.registrar');
+
+
+
     //clearance create
     Route::get('/deployment', [ViewClearanceController::class, 'index'])->name('admin.deployment');
     Route::post('/create/clearance', [DeployClearanceController::class, 'store'])->name('store.clearance');
@@ -99,6 +108,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/currentview-update', [CurrentViewController::class, 'store'])->name('admin.updateview');
     //add year
     Route::post('/add-year', [CurrentViewController::class, 'addyear'])->name('admin.addyear');
+    //year delete
+    Route::post('/deleteyear', [DeleteYearController::class, 'store'])->name('delete.year');
 
 
 });

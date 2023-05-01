@@ -7,26 +7,28 @@ use App\Models\Profiles;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class EditOfficerController extends Controller
+class EditRegistrarController extends Controller
 {
     public function store(Request $request)
     {
-        $officer = Profiles::findOrFail($request->id);
+        //user profile
+        $registrar = Profiles::findOrFail($request->id);
 
-        $officer->employeeno = $request->employeeno;
-        $officer->firstname = $request->firstname;
-        $officer->lastname = $request->lastname;
-        $officer->middlename = $request->middlename;
+        $registrar->employeeno = $request->employeeno;
+        $registrar->firstname = $request->firstname;
+        $registrar->lastname = $request->lastname;
+        $registrar->middlename = $request->middlename;
+        $registrar->section = $request->section;
 
-        $officer->save();
+        $registrar->save();
 
-        $user = User::findOrFail($officer->user_id);
+        //user account
+        $user = User::findOrFail($registrar->user_id);
 
         $spacelessUsername = str_replace(' ', '', $request->firstname);
             
         $user->username = $spacelessUsername.$request->employeeno;
         $user->save();
-
         return redirect()->back();
     }
 

@@ -17,9 +17,9 @@ class RegisterOfficerController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'middlename' => 'required',
-            'employeeno' => 'required',
+            'employeeno' => 'required|unique:profiles,employeeno',
         ]);
-
+       
         $currentyear = CurrentYear::first();
 
         $spacelessUsername = str_replace(' ', '', $request->firstname);

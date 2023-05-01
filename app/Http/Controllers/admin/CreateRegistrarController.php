@@ -27,9 +27,11 @@ class CreateRegistrarController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'middlename' => 'required',
-            'employeeno' => 'required',
-            'position' => 'required',
+            'employeeno' => 'required|unique:profiles,employeeno',
+            'position' => 'required|unique:profiles,section',
         ]);
+
+       
 
         $currentyear = CurrentYear::first();
 

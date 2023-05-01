@@ -13,17 +13,23 @@ class RegistrarSearchController extends Controller
      public function store(Request $request) {
 
         $search = $request->search;
+        
 
         $profiles = Profiles::whereHas('user', function ($query) {
             $query->where('role', 'student');
-        })->where('studentno', 'like', '%'.$search.'%')
-        ->orWhere('firstname', 'like', '%'.$search.'%')
-        ->orWhere('lastname', 'like', '%'.$search.'%')
-        ->orWhere('middlename', 'like', '%'.$search.'%')
-        ->orWhere('year', 'like', '%'.$search.'%')
-        ->orWhere('course', 'like', '%'.$search.'%')
-        ->orWhere('section', 'like', '%'.$search.'%')->paginate(10);
+        })
+        ->where(function($query) use ($search) {
+            $query->where('studentno', 'like', '%'.$search.'%')
+                ->orWhere('firstname', 'like', '%'.$search.'%')
+                ->orWhere('lastname', 'like', '%'.$search.'%')
+                ->orWhere('middlename', 'like', '%'.$search.'%')
+                ->orWhere('year', 'like', '%'.$search.'%')
+                ->orWhere('course', 'like', '%'.$search.'%')
+                ->orWhere('section', 'like', '%'.$search.'%');
+        })
+        ->paginate(10);
 
+        // dd($profiles);
         $approvedClearances = Clearance::whereHas('profiles.user', function ($query) {
             $query->where('role', 'student');
         })->where('status', 'approved')

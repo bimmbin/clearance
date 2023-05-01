@@ -88,7 +88,7 @@
                     </tr>
                 @endforeach
 
-                //approve
+                {{-- //approve --}}
                 <div class="" id="passId"></div>
                 <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
                     id="sig-pad">
@@ -104,7 +104,7 @@
 
                 </div>
 
-                //disapprove
+                {{-- //disapprove --}}
                 <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
                     id="editDiaglogBox2">
                     <div class="absolute z-50 bg-white py-5 px-5 rounded-lg">

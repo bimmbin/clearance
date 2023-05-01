@@ -22,7 +22,8 @@ class CurrentViewController extends Controller
     }
     public function store(Request $request) {
         
-        
+        // dd($request->id);
+
         $currentyear = CurrentYear::first();
 
         $currentyear->school_year_id = $request->id;

@@ -97,6 +97,17 @@ class RegisterStudentController extends Controller
 
     public function single(Request $request) {
         // dd($request); 
+        $this->validate($request, [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'middlename' => 'required',
+            'studentno' => 'required|unique:profiles,studentno',
+            'sex' => 'required',
+            'year' => 'required',
+            'course' => 'required',
+            'section' => 'required',
+        ]);
+
         $currentyear = CurrentYear::first();
 
         $spacelessUsername = str_replace(' ', '', $request->firstname);
