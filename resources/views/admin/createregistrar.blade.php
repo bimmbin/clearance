@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('docTitle')
-    Registrar
+    Create Registrar
 @endsection
 
 

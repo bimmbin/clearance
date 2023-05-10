@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('docTitle')</title>
-    <link rel="icon" type="image/x-icon" href="asset/chcc vector logo.png">
+    <link rel="icon" type="image/x-icon" href="img/icons/chcclogo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -509,10 +509,17 @@
 
             </main>
 
+            <footer class="w-full h-16 bg-darkblue border-l border-white flex justify-center items-center px-5">
+                <h1 class="text-white text-center text-sm max-sm:text-[13px]">All rights reserved © CS Batch 2022 - 2023 Concepcion Holy Cross College Inc.</h1>
+            </footer>
+
     </section>
 
-</body>
+   
 
+</body>
+<!-- CHCC | CS Batch 2022 - 2023 | Developed by arvin gomez -->
+<!-- vinrecs.com -->
 <script>
     @foreach (range(1, 10) as $i)
         function dropEdit{{ $loop->index }}() {

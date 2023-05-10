@@ -23,6 +23,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('role');
             $table->string('school_year_id');
+            $table->string('is_changed_pass');
         });
     }
 

@@ -63,7 +63,7 @@ class RegisterStudentController extends Controller
                                         'school_year_id' => $currentyear->school_year_id], [
                 'password' => Hash::make($studentnumber),
                 'role' => 'student',
-                
+                'is_changed_pass' => '0',
             ]);
 
 
@@ -117,6 +117,7 @@ class RegisterStudentController extends Controller
                                 'school_year_id' => $currentyear->school_year_id], [
             'password' => Hash::make($request->studentno),
             'role' => 'student',
+            'is_changed_pass' => '0',
         ]);
 
         if (!$user->exists) {

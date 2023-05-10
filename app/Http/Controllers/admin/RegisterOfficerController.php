@@ -26,7 +26,8 @@ class RegisterOfficerController extends Controller
         $user = User::firstOrNew(['username' => $spacelessUsername . $request->employeeno], [
             'password' => Hash::make($request->employeeno),
             'role' => 'officer',
-            'school_year_id' => $currentyear->schoolyear->year
+            'school_year_id' => $currentyear->schoolyear->year,
+            'is_changed_pass' => '0',
         ]);
 
         if (!$user->exists) {

@@ -23,6 +23,7 @@ use App\Http\Controllers\admin\DeployClearanceController;
 use App\Http\Controllers\admin\RegisterOfficerController;
 use App\Http\Controllers\admin\RegisterStudentController;
 use App\Http\Controllers\admin\CreateDepartmentController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\officer\ClearanceActionController;
 use App\Http\Controllers\officer\SearchClearanceController;
 use App\Http\Controllers\officer\StudentClearanceController;
@@ -56,6 +57,15 @@ Route::post('/login', [LoginController::class, 'store']);
 });
 //log-out
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+Route::middleware(['auth', 'passauth'])->group(function () {
+    Route::get('/changepass', [ChangePasswordController::class, 'index'])->name('changepass');
+    Route::post('/changepassword', [ChangePasswordController::class, 'store'])->name('user.changepass');
+});
+
+
+
+
 
 // admin
 Route::middleware(['auth', 'admin'])->group(function () {

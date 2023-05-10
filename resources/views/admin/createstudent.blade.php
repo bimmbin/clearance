@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('docTitle')
-    Landing Page
+    Create Student
 @endsection
 
 

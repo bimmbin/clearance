@@ -40,6 +40,7 @@ class CreateRegistrarController extends Controller
             'password' => Hash::make($request->employeeno),
             'role' => 'registrar',
             'school_year_id' => $currentyear->schoolyear->id,
+            'is_changed_pass' => '0',
         ]);
 
         if (!$user->exists) {

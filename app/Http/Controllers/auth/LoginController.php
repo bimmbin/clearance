@@ -41,6 +41,10 @@ class LoginController extends Controller
         // make a condition here for admin, officer and student
         $user = auth()->user();
 
+        if ($user->is_changed_pass === '0') {
+            return redirect()->route('changepass');
+        }
+
         if ($user->role === 'admin') {
             return redirect()->route('createstudent');
         } elseif ($user->role === 'officer') {
@@ -49,9 +53,9 @@ class LoginController extends Controller
             return redirect()->route('student.clearance');
         } elseif ($user->role === 'registrar') {
             return redirect()->route('registrar.clearance');
-        } 
+        }
 
 
-        // return redirect()->route('home');
+        // return redirect()->route('changepass');
     }
 }
