@@ -25,7 +25,7 @@ class ChangePasswordController extends Controller
         $user->save();
 
         if ($user->role === 'admin') {
-            return redirect()->route('createstudent');
+            return redirect()->route('admin.currentview');
         } elseif ($user->role === 'officer') {
             return redirect()->route('pending.view');
         } elseif ($user->role === 'student') {
