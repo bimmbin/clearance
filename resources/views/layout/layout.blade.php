@@ -518,8 +518,8 @@
    
 
 </body>
-<!-- CHCC | CS Batch 2022 - 2023 | Developed by arvin gomez -->
-<!-- vinrecs.com -->
+{{-- <!-- CHCC | CS Batch 2022 - 2023 | Developed by arvin gomez -->
+<!-- vinrecs.com --> --}}
 <script>
     @foreach (range(1, 10) as $i)
         function dropEdit{{ $loop->index }}() {
