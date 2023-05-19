@@ -10,21 +10,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-
-        $student = User::firstWhere('role', 'student');
-
-        $admin = User::firstWhere('role', 'admin');
-
-        $officer = User::firstWhere('role', 'officer');
-
-        $registrar = User::firstWhere('role', 'registrar');
-        
-        return view('auth.login', [
-            'student' => $student,
-            'admin' => $admin,
-            'registrar' => $registrar,
-            'officer' => $officer
-        ]);
+        return view('auth.login');
     }
 
     public function store(Request $request)
